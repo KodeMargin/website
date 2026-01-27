@@ -25,7 +25,16 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col gap-24 pb-20 pt-10 md:pt-20 lg:pt-32">
+    <div className="flex flex-col gap-12 pb-20 pt-8 md:pt-12 lg:pt-16">
+      {/* Brand Header */}
+      <div className="container-padding lg:hidden">
+        <div className="flex items-center justify-center">
+          <div className="h-16 w-16 flex items-center justify-center rounded-2xl text-white border shadow-sm bg-white hover:shadow-md transition-all duration-300 hover:scale-105">
+            <img src="/KodeMargin.png" alt="KodeMargin Logo" className="h-14 w-14 rounded-xl" />
+          </div>
+        </div>
+      </div>
+
       {/* Hero Section */}
       <section className="container-padding flex flex-col items-start gap-8 lg:gap-10">
         <motion.div
@@ -53,11 +62,11 @@ export default function Home() {
             KodeMargin works with ambitious companies to design products, build technology, and grow brands in the digital age.
           </p>
 
-          <div className="flex flex-wrap items-center gap-4">
-            <Button size="lg" className="h-14 rounded-full px-8 text-base shadow-xl shadow-primary/20 bg-primary hover:bg-primary/90 text-white transition-all hover:scale-105 active:scale-95">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <Button size="lg" className="h-14 rounded-full px-8 text-base shadow-xl shadow-primary/20 bg-primary hover:bg-primary/90 text-white transition-all hover:scale-105 active:scale-95 w-full sm:w-auto">
               Start Your Project
             </Button>
-            <Button size="lg" variant="ghost" className="h-14 group rounded-full px-8 text-base text-primary hover:bg-surface">
+            <Button size="lg" variant="ghost" className="h-14 group rounded-full px-8 text-base text-primary hover:bg-surface w-full sm:w-auto justify-end sm:justify-center">
               View Our Work
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Button>
