@@ -8,15 +8,6 @@ import { Card, CardContent } from "@/components/ui/card"
 import { motion } from "framer-motion"
 import { contactInfo, socialLinks } from "@/data/contact"
 
-// Custom Input/Textarea if needed, or use existing from shadcn/ui. 
-// Assuming standard ones or creating simple ones if missing.
-// Since I don't see Input/Textarea in previous listings, I'll use standard inputs with tailwind if imports fail, 
-// OR I will assume I need to create them or import them if they exist. 
-// To be safe and fast, I will rely on standard HTML inputs styled with Tailwind for now, 
-// or minimal usage of 'Input' from a UI library if the user has it.
-// Checking imports... The layout uses standard components. I'll stick to clear Tailwind styles for form elements to avoid import errors if those components aren't generated yet.
-// Actually, I'll try to import them. If they fail, I'll quick-fix.
-// Wait, I should assume they might not exist. I'll define simple styled components inline or just proper HTML.
 
 export default function ContactPage() {
     return (
