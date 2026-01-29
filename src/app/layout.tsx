@@ -17,7 +17,10 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: "KodeMargin | Full-Service Digital Agency",
-  description: "Web Development, Mobile Apps, and Digital Marketing Strategies that scale.",
+  description: "Software, Web Development, Mobile Apps, and Digital Marketing Strategies that scale.",
+  icons: {
+    icon: "/KodeMargin.png",
+  },
 };
 
 export default function RootLayout({
