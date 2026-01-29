@@ -1,6 +1,7 @@
 
 import { Users, Target, Heart, Zap } from "lucide-react"
 
+
 export const aboutData = {
     story: "KodeMargin was founded with a simple mission: to bridge the gap between complex technology and business growth. We started as a small team of passionate developers and have grown into a full-service digital agency trusted by clients worldwide.",
     mission: "To empower businesses with innovative digital solutions that drive real-world results.",
@@ -31,9 +32,9 @@ export const values = [
 
 export const team = [
     {
-        name: "Alex Morgan",
+        name: "Pathum Dissanayake",
         role: "Founder & CEO",
-        image: "bg-slate-200" // Placeholder
+        image: "/Pathum.jpg"
     },
     {
         name: "Sarah Chen",

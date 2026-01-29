@@ -6,6 +6,7 @@ import { SectionHeader } from "@/components/ui/section-header"
 import { motion } from "framer-motion"
 import { aboutData, values, team } from "@/data/about"
 import { User } from "lucide-react"
+import Image from "next/image"
 
 export default function AboutPage() {
     const containerVariants = {
@@ -103,10 +104,22 @@ export default function AboutPage() {
                 <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
                     {team.map((member, index) => (
                         <div key={index} className="group flex flex-col items-center">
-                            <div className={`mb-4 h-64 w-full rounded-2xl ${member.image} overflow-hidden bg-slate-100 relative`}>
-                                <div className="absolute inset-0 flex items-center justify-center text-slate-400">
-                                    <User className="h-20 w-20 opacity-20" />
-                                </div>
+                            <div className="mb-4 h-64 w-full rounded-2xl overflow-hidden bg-slate-100 relative">
+                                {member.image.startsWith('/') ? (
+                                    <Image
+                                        src={member.image}
+                                        alt={member.name}
+                                        fill
+                                        className="object-cover"
+                                    />
+                                ) : (
+                                    <>
+                                        <div className={`absolute inset-0 ${member.image}`} />
+                                        <div className="absolute inset-0 flex items-center justify-center text-slate-400">
+                                            <User className="h-20 w-20 opacity-20" />
+                                        </div>
+                                    </>
+                                )}
                             </div>
                             <h3 className="text-xl font-bold text-primary font-display">{member.name}</h3>
                             <p className="text-text-muted">{member.role}</p>
