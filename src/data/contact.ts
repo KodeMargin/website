@@ -1,5 +1,6 @@
 
-import { Mail, Phone, MapPin, Linkedin, Twitter, Github, Instagram } from "lucide-react"
+import { Mail, Phone, MapPin, Linkedin, Twitter, Github, Instagram, Facebook, X } from "lucide-react"
+import { BsWhatsapp } from "react-icons/bs"
 
 export const contactInfo = [
     {
@@ -24,7 +25,7 @@ export const contactInfo = [
 
 export const socialLinks = [
     { name: "LinkedIn", icon: Linkedin, href: "https://www.linkedin.com/company/kodemargin/" },
-    { name: "Twitter", icon: Twitter, href: "#" },
-    { name: "GitHub", icon: Github, href: "#" },
-    { name: "Instagram", icon: Instagram, href: "#" }
+    { name: "Facebook", icon: Facebook, href: "https://www.facebook.com/profile.php?id=61568407317471" },
+    { name: "Instagram", icon: Instagram, href: "https://www.instagram.com/kodemargin/" },
+    { name: "WhatsApp", icon: BsWhatsapp, href: "https://wa.me/94711888358" },
 ]
