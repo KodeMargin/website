@@ -10,10 +10,13 @@ export function PageShell({ children }: { children: React.ReactNode }) {
         <AnimatePresence mode="wait">
             <motion.div
                 key={pathname}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
+                initial={{ opacity: 0, scale: 0.98, y: 10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.98, y: -10 }}
+                transition={{
+                    duration: 0.5,
+                    ease: [0, 1, 0, 1] // Custom refined bezier curve
+                }}
                 className="min-h-full w-full"
             >
                 {children}

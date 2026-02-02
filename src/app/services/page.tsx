@@ -24,7 +24,7 @@ export default function ServicesPage() {
     }
 
     return (
-        <div className="flex flex-col gap-24 pb-20 pt-10 md:pt-20 lg:pt-32">
+        <div className="flex flex-col gap-24 pb-20 pt-8 md:pt-12 lg:pt-16">
             {/* Hero Section */}
             <section className="container-padding flex flex-col items-start gap-8">
                 <motion.div
