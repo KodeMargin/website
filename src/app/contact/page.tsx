@@ -1,15 +1,68 @@
 "use client"
 
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-// import { Input } from "@/components/ui/input"
-// import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
 import { motion } from "framer-motion"
 import { contactInfo, socialLinks } from "@/data/contact"
+import { Loader2, CheckCircle, AlertCircle } from "lucide-react"
 
+interface FormData {
+    name: string
+    email: string
+    subject: string
+    message: string
+}
+
+type FormStatus = "idle" | "loading" | "success" | "error"
 
 export default function ContactPage() {
+    const [formData, setFormData] = useState<FormData>({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+    })
+    const [status, setStatus] = useState<FormStatus>("idle")
+    const [errorMessage, setErrorMessage] = useState("")
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { id, value } = e.target
+        setFormData((prev) => ({ ...prev, [id]: value }))
+    }
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault()
+        setStatus("loading")
+        setErrorMessage("")
+
+        try {
+            const response = await fetch("/api/contact", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            })
+
+            const data = await response.json()
+
+            if (response.ok) {
+                setStatus("success")
+                setFormData({ name: "", email: "", subject: "", message: "" })
+                // Reset success message after 5 seconds
+                setTimeout(() => setStatus("idle"), 5000)
+            } else {
+                setStatus("error")
+                setErrorMessage(data.error || "Something went wrong. Please try again.")
+            }
+        } catch {
+            setStatus("error")
+            setErrorMessage("Failed to send message. Please try again later.")
+        }
+    }
+
     return (
         <div className="flex flex-col gap-24 pb-20 pt-8 md:pt-12 lg:pt-16">
             {/* Hero Section */}
@@ -42,25 +95,86 @@ export default function ContactPage() {
                     {/* Contact Form */}
                     <Card className="border-none shadow-xl bg-white p-2">
                         <CardContent className="p-6 md:p-8 space-y-6">
-                            <div className="grid gap-4 md:grid-cols-2">
-                                <div className="space-y-2">
-                                    <label htmlFor="name" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Name</label>
-                                    <input id="name" className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" placeholder="John Doe" />
+                            <form onSubmit={handleSubmit} className="space-y-6">
+                                <div className="grid gap-4 md:grid-cols-2">
+                                    <div className="space-y-2">
+                                        <label htmlFor="name" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Name</label>
+                                        <input
+                                            id="name"
+                                            value={formData.name}
+                                            onChange={handleChange}
+                                            required
+                                            className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                            placeholder="John Doe"
+                                        />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <label htmlFor="email" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Email</label>
+                                        <input
+                                            id="email"
+                                            type="email"
+                                            value={formData.email}
+                                            onChange={handleChange}
+                                            required
+                                            className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                            placeholder="john@example.com"
+                                        />
+                                    </div>
                                 </div>
                                 <div className="space-y-2">
-                                    <label htmlFor="email" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Email</label>
-                                    <input id="email" type="email" className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" placeholder="john@example.com" />
+                                    <label htmlFor="subject" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Subject</label>
+                                    <input
+                                        id="subject"
+                                        value={formData.subject}
+                                        onChange={handleChange}
+                                        required
+                                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                        placeholder="Project Inquiry"
+                                    />
                                 </div>
-                            </div>
-                            <div className="space-y-2">
-                                <label htmlFor="subject" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Subject</label>
-                                <input id="subject" className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" placeholder="Project Inquiry" />
-                            </div>
-                            <div className="space-y-2">
-                                <label htmlFor="message" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Message</label>
-                                <textarea id="message" className="flex min-h-[120px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" placeholder="Tell us about your project..." />
-                            </div>
-                            <Button size="lg" className="w-full bg-primary hover:bg-primary/90 text-white">Send Message</Button>
+                                <div className="space-y-2">
+                                    <label htmlFor="message" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Message</label>
+                                    <textarea
+                                        id="message"
+                                        value={formData.message}
+                                        onChange={handleChange}
+                                        required
+                                        className="flex min-h-[120px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                        placeholder="Tell us about your project..."
+                                    />
+                                </div>
+
+                                {/* Status Messages */}
+                                {status === "success" && (
+                                    <div className="flex items-center gap-2 text-green-600 bg-green-50 p-3 rounded-md">
+                                        <CheckCircle className="h-5 w-5" />
+                                        <span>Message sent successfully! We'll get back to you soon.</span>
+                                    </div>
+                                )}
+
+                                {status === "error" && (
+                                    <div className="flex items-center gap-2 text-red-600 bg-red-50 p-3 rounded-md">
+                                        <AlertCircle className="h-5 w-5" />
+                                        <span>{errorMessage}</span>
+                                    </div>
+                                )}
+
+                                <Button
+                                    type="submit"
+                                    size="lg"
+                                    className="w-full bg-primary hover:bg-primary/90 text-white"
+                                    disabled={status === "loading"}
+                                >
+                                    {status === "loading" ? (
+                                        <>
+                                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                            Sending...
+                                        </>
+                                    ) : (
+                                        "Send Message"
+                                    )}
+                                </Button>
+                            </form>
                         </CardContent>
                     </Card>
 

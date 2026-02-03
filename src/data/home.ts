@@ -2,8 +2,8 @@
 import { MessageSquare, Palette, Code2, Rocket } from "lucide-react"
 
 export const stats = [
-    { label: "Projects Delivered", value: "10+" },
-    { label: "Client Satisfaction", value: "98%" },
+    { label: "Projects Delivered", value: "5+" },
+    { label: "Client Satisfaction", value: "100%" },
     { label: "Team Experts", value: "5+" },
     { label: "Years in Business", value: "1+" },
 ]

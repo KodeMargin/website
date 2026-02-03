@@ -9,6 +9,9 @@ import { ArrowUpRight } from "lucide-react"
 import { projects } from "@/data/portfolio"
 
 export default function PortfolioPage() {
+    // Filter out projects with empty titles
+    const validProjects = projects.filter(project => project.title && project.title.trim() !== "")
+
     const containerVariants = {
         hidden: { opacity: 0 },
         show: {
@@ -51,46 +54,64 @@ export default function PortfolioPage() {
 
             {/* Projects Grid */}
             <section className="container-padding">
-                <motion.div
-                    variants={containerVariants}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true, margin: "-100px" }}
-                    className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
-                >
-                    {projects.map((project, index) => (
-                        <Card key={index} className="group overflow-hidden border-none shadow-lg transition-all hover:-translate-y-2 hover:shadow-xl bg-white flex flex-col h-full">
-                            {/* Image Placeholder */}
-                            <div className={`h-64 w-full ${project.image} relative overflow-hidden`}>
-                                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors" />
-                            </div>
-
-                            <CardHeader className="flex-1">
-                                <div className="mb-4 flex items-center justify-between">
-                                    <Badge variant="secondary" className="rounded-md px-2 py-1 font-medium bg-surface text-text-muted">{project.category}</Badge>
+                {validProjects.length === 0 ? (
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6 }}
+                        className="flex flex-col items-center justify-center py-20 text-center"
+                    >
+                        <div className="rounded-2xl bg-surface/50 px-8 py-12 max-w-lg">
+                            <h3 className="text-2xl font-bold text-primary mb-4 font-display">
+                                Ongoing projects are coming soon
+                            </h3>
+                            <p className="text-text-muted">
+                                We're currently working on some exciting projects. Check back soon to see our latest work!
+                            </p>
+                        </div>
+                    </motion.div>
+                ) : (
+                    <motion.div
+                        variants={containerVariants}
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true, margin: "-100px" }}
+                        className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+                    >
+                        {validProjects.map((project, index) => (
+                            <Card key={index} className="group overflow-hidden border-none shadow-lg transition-all hover:-translate-y-2 hover:shadow-xl bg-white flex flex-col h-full">
+                                {/* Image Placeholder */}
+                                <div className={`h-64 w-full ${project.image} relative overflow-hidden`}>
+                                    <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors" />
                                 </div>
-                                <CardTitle className="text-2xl mb-2 group-hover:text-red-500 transition-colors">{project.title}</CardTitle>
-                                <p className="text-text-muted">{project.description}</p>
-                            </CardHeader>
 
-                            <CardContent>
-                                <div className="flex flex-wrap gap-2">
-                                    {project.tags.map((tag, i) => (
-                                        <span key={i} className="text-xs font-semibold text-text-muted/80 bg-surface px-2 py-1 rounded">
-                                            {tag}
-                                        </span>
-                                    ))}
-                                </div>
-                            </CardContent>
+                                <CardHeader className="flex-1">
+                                    <div className="mb-4 flex items-center justify-between">
+                                        <Badge variant="secondary" className="rounded-md px-2 py-1 font-medium bg-surface text-text-muted">{project.category}</Badge>
+                                    </div>
+                                    <CardTitle className="text-2xl mb-2 group-hover:text-red-500 transition-colors">{project.title}</CardTitle>
+                                    <p className="text-text-muted">{project.description}</p>
+                                </CardHeader>
 
-                            <CardFooter className="pt-0 pb-6">
-                                <Button variant="link" className="p-0 h-auto font-semibold text-primary group-hover:text-red-500">
-                                    View Case Study <ArrowUpRight className="ml-1 h-4 w-4" />
-                                </Button>
-                            </CardFooter>
-                        </Card>
-                    ))}
-                </motion.div>
+                                <CardContent>
+                                    <div className="flex flex-wrap gap-2">
+                                        {project.tags.map((tag, i) => (
+                                            <span key={i} className="text-xs font-semibold text-text-muted/80 bg-surface px-2 py-1 rounded">
+                                                {tag}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </CardContent>
+
+                                <CardFooter className="pt-0 pb-6">
+                                    <Button variant="link" className="p-0 h-auto font-semibold text-primary group-hover:text-red-500">
+                                        View Case Study <ArrowUpRight className="ml-1 h-4 w-4" />
+                                    </Button>
+                                </CardFooter>
+                            </Card>
+                        ))}
+                    </motion.div>
+                )}
             </section>
 
             {/* CTA Section */}
@@ -104,7 +125,7 @@ export default function PortfolioPage() {
                             Let's build something amazing together.
                         </p>
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                            <Button size="lg" className="w-full sm:w-auto rounded-full bg-white text-primary hover:bg-white/90 h-14 px-8 text-base font-bold">
+                            <Button href="/contact" size="lg" className="w-full sm:w-auto rounded-full bg-white text-primary hover:bg-white/90 h-14 px-8 text-base font-bold">
                                 Get a Proposal
                             </Button>
                         </div>

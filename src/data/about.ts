@@ -37,18 +37,18 @@ export const team = [
         image: "/Pathum.jpg"
     },
     {
-        name: "Sarah Chen",
-        role: "CTO",
+        name: "User 1",
+        role: "Role",
         image: "bg-slate-300" // Placeholder
     },
     {
-        name: "David Kim",
-        role: "Head of Design",
+        name: "User 2",
+        role: "Role",
         image: "bg-slate-200" // Placeholder
     },
     {
-        name: "Emily Davis",
-        role: "Lead Developer",
+        name: "User 3",
+        role: "Role",
         image: "bg-slate-300" // Placeholder
     }
 ]

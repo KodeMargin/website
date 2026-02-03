@@ -75,7 +75,7 @@ export function Sidebar() {
                         <p className="mb-3 text-xs font-medium text-white/80">
                             Ready to scale your business?
                         </p>
-                        <Button variant="accent" className="w-full shadow-lg shadow-red-900/20">
+                        <Button href="/contact" variant="accent" className="w-full shadow-lg shadow-red-900/20">
                             Book Consultation
                         </Button>
                     </div>

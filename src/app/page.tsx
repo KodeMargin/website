@@ -63,10 +63,10 @@ export default function Home() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-            <Button size="lg" className="h-14 rounded-full px-8 text-base shadow-xl shadow-primary/20 bg-primary hover:bg-primary/90 text-white transition-all hover:scale-105 active:scale-95 w-full sm:w-auto">
+            <Button href="/contact" size="lg" className="h-14 rounded-full px-8 text-base shadow-xl shadow-primary/20 bg-primary hover:bg-primary/90 text-white transition-all hover:scale-105 active:scale-95 w-full sm:w-auto">
               Start Your Project
             </Button>
-            <Button size="lg" variant="ghost" className="h-14 group rounded-full px-8 text-base text-primary hover:bg-surface w-full sm:w-auto justify-end sm:justify-center">
+            <Button href="/portfolio" size="lg" variant="ghost" className="h-14 group rounded-full px-8 text-base text-primary hover:bg-surface w-full sm:w-auto justify-end sm:justify-center">
               View Our Work
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Button>
@@ -253,10 +253,10 @@ export default function Home() {
               Let's discuss how we can help you achieve your goals with a custom digital solution.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button size="lg" className="w-full sm:w-auto rounded-full bg-white text-primary hover:bg-white/90 h-14 px-8 text-base font-bold">
+              <Button href="/contact" size="lg" className="w-full sm:w-auto rounded-full bg-white text-primary hover:bg-white/90 h-14 px-8 text-base font-bold">
                 Get a Proposal
               </Button>
-              <Button size="lg" variant="outline" className="w-full sm:w-auto rounded-full bg-transparent border-white/20 text-white hover:bg-white/10 h-14 px-8 text-base">
+              <Button href="/contact" size="lg" variant="outline" className="w-full sm:w-auto rounded-full bg-transparent border-white/20 text-white hover:bg-white/10 h-14 px-8 text-base">
                 Contact Support
               </Button>
             </div>

@@ -58,17 +58,28 @@ export const services = [
         features: ["User Research", "Wireframing & Prototyping", "Visual Design", "Design Systems"]
     },
     {
-        title: "Digital Marketing",
+        title: "Digital Marketing & Social Media Marketing",
         description: "Drive traffic, generate leads, and grow your revenue with our data-driven digital marketing strategies.",
         icon: BarChart3,
         features: ["SEO Optimization", "PPC Advertising", "Social Media Marketing", "Content Strategy"]
     },
     {
-        title: "Software & SaaS",
+        title: "Software & SaaS Development",
         description: "Scalable software solutions designed to grow with your business. We handle the entire lifecycle from MVP to enterprise.",
         icon: Cpu,
         features: ["SaaS Product Development", "API Development", "Cloud Architecture", "Legacy System Modernization"]
     },
+    {
+        title: "Social Media Management & Social Media Posts",
+        description: "Strategic social media management to grow your brand presence, engagement, and audience across all platforms.",
+        icon: Layout,
+        features: [
+            "Content Planning & Scheduling",
+            "Creative Post Design",
+            "Account Management",
+            "Engagement & Growth Strategy"
+        ]
+    }
 ]
 
 export const techStack = [

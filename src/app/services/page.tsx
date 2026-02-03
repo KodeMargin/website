@@ -122,7 +122,7 @@ export default function ServicesPage() {
                             Whether you need a new website, a mobile app, or a complete digital transformation, we are here to help.
                         </p>
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                            <Button size="lg" className="w-full sm:w-auto rounded-full bg-white text-primary hover:bg-white/90 h-14 px-8 text-base font-bold">
+                            <Button href="/contact" size="lg" className="w-full sm:w-auto rounded-full bg-white text-primary hover:bg-white/90 h-14 px-8 text-base font-bold">
                                 Start a Project
                             </Button>
                         </div>

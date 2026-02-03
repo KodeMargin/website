@@ -1,9 +1,5 @@
 import * as React from "react"
-import { Slot } from "@radix-ui/react-slot" // Need to install this if using Slot, or just remove it.
-// I will implement without Slot for now or install user standard.
-// Actually, standard shadcn uses Slot. I'll stick to standard button element for now to save installs, or install @radix-ui/react-slot.
-// User said "Shadcn/UI for components", so I should try to align.
-// I'll install @radix-ui/react-slot too.
+import Link from "next/link"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
@@ -38,13 +34,25 @@ export interface ButtonProps
     extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
     asChild?: boolean
+    href?: string
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-    ({ className, variant, size, asChild = false, ...props }, ref) => {
-        const Comp = "button"
+    ({ className, variant, size, asChild = false, href, ...props }, ref) => {
+        // If href is provided, render as a Next.js Link
+        if (href) {
+            return (
+                <Link
+                    href={href}
+                    className={cn(buttonVariants({ variant, size, className }))}
+                >
+                    {props.children}
+                </Link>
+            )
+        }
+
         return (
-            <Comp
+            <button
                 className={cn(buttonVariants({ variant, size, className }))}
                 ref={ref}
                 {...props}
