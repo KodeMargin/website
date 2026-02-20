@@ -5,13 +5,14 @@ import { cn } from "@/lib/utils"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { motion } from "framer-motion"
-import { Home, Layers, Briefcase, Mail, Feather, Menu, X } from "lucide-react"
+import { Home, Layers, Briefcase, Mail, Feather, Tag } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const navItems = [
     { name: "Home", href: "/", icon: Home },
     { name: "About", href: "/about", icon: Feather },
     { name: "Services", href: "/services", icon: Layers },
+    { name: "Packages", href: "/packages", icon: Tag },
     { name: "Portfolio", href: "/portfolio", icon: Briefcase },
     { name: "Contact", href: "/contact", icon: Mail },
 ]

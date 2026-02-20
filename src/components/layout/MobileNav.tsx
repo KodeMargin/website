@@ -3,11 +3,12 @@
 import { cn } from "@/lib/utils"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Home, Layers, Briefcase, Mail, Menu } from "lucide-react"
+import { Home, Layers, Briefcase, Mail, Tag } from "lucide-react"
 
 const navItems = [
     { name: "Home", href: "/", icon: Home },
     { name: "Services", href: "/services", icon: Layers },
+    { name: "Packages", href: "/packages", icon: Tag },
     { name: "Work", href: "/portfolio", icon: Briefcase },
     { name: "Contact", href: "/contact", icon: Mail },
 ]
@@ -39,9 +40,7 @@ export function MobileNav() {
                     )
                 })}
 
-                <button className="flex h-12 w-12 items-center justify-center rounded-full text-white/70 hover:bg-white/10 hover:text-white">
-                    <Menu className="h-5 w-5" />
-                </button>
+
             </nav>
         </div>
     )
