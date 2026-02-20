@@ -71,7 +71,7 @@ export default function PackagesPage() {
                     {DISCOUNT_ACTIVE && (
                         <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-accent/10 px-4 py-1.5 text-sm font-semibold text-accent border border-accent/20">
                             <Zap className="h-3.5 w-3.5 fill-current" />
-                            Startup Launch — 10% OFF for first {DISCOUNT_SPOTS_LEFT} clients only
+                            Startup Launch - Offers are available for first {DISCOUNT_SPOTS_LEFT} clients only
                         </div>
                     )}
                     <h1 className="text-5xl font-bold tracking-tight text-primary font-display leading-[1.05] sm:text-6xl md:text-7xl">
@@ -174,7 +174,7 @@ export default function PackagesPage() {
                                             </div>
                                             {DISCOUNT_ACTIVE && (
                                                 <p className="mt-1 text-xs font-semibold text-accent">
-                                                    Save ${pkg.originalPrice - pkg.discountPrice} — Startup Launch Offer
+                                                    Save ${pkg.originalPrice - pkg.discountPrice} - Startup Launch Offer
                                                 </p>
                                             )}
                                         </CardHeader>
@@ -386,7 +386,7 @@ export default function PackagesPage() {
                     </table>
                 </div>
                 <p className="mt-4 text-xs text-text-muted text-center">
-                    * Need more than 5 pages? Additional pages and custom requirements are available — <a href="/contact" className="text-accent underline underline-offset-2">contact us</a> for a tailored quote.
+                    * Need more than 5 pages? Additional pages and custom requirements are available - <a href="/contact" className="text-accent underline underline-offset-2">contact us</a> for a tailored quote.
                 </p>
             </section>
 
@@ -402,7 +402,7 @@ export default function PackagesPage() {
                     <div className="relative z-10 max-w-2xl mx-auto space-y-6">
                         {DISCOUNT_ACTIVE && (
                             <Badge className="bg-accent/20 text-accent border border-accent/30 text-sm px-4 py-1.5">
-                                🚀 Startup Launch — {DISCOUNT_SPOTS_LEFT} Spots Left at 10% OFF
+                                🚀 Startup Launch - {DISCOUNT_SPOTS_LEFT} Spots Left
                             </Badge>
                         )}
                         <h2 className="text-4xl font-bold font-display text-white md:text-5xl">

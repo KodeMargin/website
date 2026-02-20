@@ -35,7 +35,7 @@ export function Sidebar() {
             </div>
 
             {/* Navigation & Footer - Dark background with rounded top right corner */}
-            <div className="flex flex-1 flex-col justify-between p-6 overflow-y-auto bg-primary rounded-tr-4xl">
+            <div className="flex flex-1 flex-col justify-between p-4 xl:p-6 overflow-y-auto bg-primary rounded-tr-4xl scrollbar-hide [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                 {/* Navigation */}
                 <nav className="space-y-2">
                     {navItems.map((item) => {
@@ -47,7 +47,7 @@ export function Sidebar() {
                                 key={item.href}
                                 href={item.href}
                                 className={cn(
-                                    "group relative flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-all",
+                                    "group relative flex items-center gap-3 rounded-xl px-4 py-2.5 xl:py-3 text-sm font-medium transition-all",
                                     isActive
                                         ? "bg-white/10 text-white shadow-sm"
                                         : "text-white/70 hover:bg-white/5 hover:text-white"
@@ -71,9 +71,9 @@ export function Sidebar() {
                 </nav>
 
                 {/* Footer / CTA */}
-                <div className="space-y-6 mt-6">
+                <div className="space-y-4 xl:space-y-6 mt-4 xl:mt-6 shrink-0">
                     <div className="rounded-xl bg-white/5 p-4 backdrop-blur-sm">
-                        <p className="mb-3 text-xs font-medium text-white/80">
+                        <p className="mb-2 xl:mb-3 text-xs font-medium text-white/80">
                             Ready to scale your business?
                         </p>
                         <Button href="/contact" variant="accent" className="w-full shadow-lg shadow-red-900/20">
