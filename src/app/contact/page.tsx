@@ -41,6 +41,7 @@ const INPUT_CLASS =
 interface FormData {
     name: string
     email: string
+    phone: string
     packageInterest: string
     subject: string
     message: string
@@ -55,6 +56,7 @@ function ContactForm() {
     const [formData, setFormData] = useState<FormData>({
         name: "",
         email: "",
+        phone: "",
         packageInterest: "",
         subject: "",
         message: "",
@@ -93,7 +95,7 @@ function ContactForm() {
 
             if (response.ok) {
                 setStatus("success")
-                setFormData({ name: "", email: "", packageInterest: "", subject: "", message: "" })
+                setFormData({ name: "", email: "", phone: "", packageInterest: "", subject: "", message: "" })
                 setTimeout(() => setStatus("idle"), 5000)
             } else {
                 setStatus("error")
@@ -135,6 +137,22 @@ function ContactForm() {
                 </div>
             </div>
 
+            {/* Phone */}
+            <div className="space-y-2">
+                <label htmlFor="phone" className="text-sm font-medium leading-none flex items-center gap-2">
+                    Phone
+                </label>
+                <input
+                    id="phone"
+                    type="tel"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    required
+                    className={INPUT_CLASS}
+                    placeholder="+1 (555) 000-0000"
+                />
+            </div>
+
             {/* Package Interest */}
             <div className="space-y-2">
                 <label htmlFor="packageInterest" className="text-sm font-medium leading-none flex items-center gap-2">
@@ -149,8 +167,8 @@ function ContactForm() {
                         value={formData.packageInterest}
                         onChange={handleChange}
                         className={`${INPUT_CLASS} appearance-none pr-9 cursor-pointer ${formData.packageInterest
-                                ? "border-primary/40 bg-primary/5 text-primary font-medium"
-                                : ""
+                            ? "border-primary/40 bg-primary/5 text-primary font-medium"
+                            : ""
                             }`}
                     >
                         {PACKAGE_OPTIONS.map((opt) => (
