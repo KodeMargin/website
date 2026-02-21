@@ -37,6 +37,13 @@ const tierStyles: Record<string, { badge: string; ring: string; glow: string; bg
     },
 }
 
+// ─── Shared animation config (mirrors contact/page.tsx) ─────────────────────
+const viewportConfig = { once: true, margin: "-80px" }
+const staggerTransition = (idx: number) => ({
+    duration: 0.5,
+    delay: idx * 0.08,
+    ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+})
 
 // ─── Comparison table helpers ────────────────────────────────────────────────
 function CellContent({ value }: { value: string | boolean }) {
@@ -52,6 +59,7 @@ export default function PackagesPage() {
         <div className="flex flex-col gap-16 pb-24 pt-8 md:pt-12">
 
             {/* ── Hero ─────────────────────────────────────────────── */}
+            {/* Hero fires on mount (animate), same as contact/page.tsx hero */}
             <section className="container-padding">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -98,7 +106,12 @@ export default function PackagesPage() {
 
             {/* ── Tab Switch ───────────────────────────────────────── */}
             <section className="container-padding">
-                <div className="flex items-center gap-1 rounded-full border border-border bg-white p-1 w-fit shadow-sm mb-10">
+                <motion.div
+                    className="flex items-center gap-1 rounded-full border border-border bg-white p-1 w-fit shadow-sm mb-10"
+                    initial={{ opacity: 0, y: 24 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                >
                     {(["main", "social"] as const).map((tab) => (
                         <button
                             key={tab}
@@ -111,9 +124,10 @@ export default function PackagesPage() {
                             {tab === "main" ? "Full Packages" : "Social Media Plans"}
                         </button>
                     ))}
-                </div>
+                </motion.div>
 
                 {/* ── Main Packages Grid ──────────────────────────────── */}
+                {/* Changed: animate → whileInView (scroll-triggered, matching contact/page.tsx) */}
                 {activeTab === "main" && (
                     <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
                         {mainPackages.map((pkg, idx) => {
@@ -124,7 +138,7 @@ export default function PackagesPage() {
                                     className="flex"
                                     initial={{ opacity: 0, y: 24 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.5, delay: idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                                    transition={{ duration: 0.5, delay: 0.2 + idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
                                 >
                                     <Card
                                         className={`relative flex flex-col w-full overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${styles.glow} ${pkg.recommended
@@ -132,7 +146,6 @@ export default function PackagesPage() {
                                             : ""
                                             }`}
                                     >
-                                        {/* Recommended badge */}
                                         {pkg.recommended && (
                                             <div className="absolute top-0 inset-x-0 flex justify-center">
                                                 <span className="inline-flex items-center gap-1 rounded-b-full bg-indigo-600 px-4 py-1 text-xs font-bold text-white shadow">
@@ -142,7 +155,6 @@ export default function PackagesPage() {
                                         )}
 
                                         <CardHeader className={`pt-${pkg.recommended ? "8" : "6"} bg-gradient-to-b ${styles.bg}`}>
-                                            {/* Tier badge */}
                                             <div className="flex items-center justify-between mb-3">
                                                 <span className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold ${styles.badge}`}>
                                                     <span>{pkg.emoji}</span> {pkg.name}
@@ -153,7 +165,6 @@ export default function PackagesPage() {
                                                 {pkg.tagline}
                                             </CardTitle>
 
-                                            {/* Pricing */}
                                             <div className="mt-4 flex items-end gap-2">
                                                 <span className="text-4xl font-bold text-primary font-display">
                                                     ${pkg.discountPrice}
@@ -172,7 +183,6 @@ export default function PackagesPage() {
                                         </CardHeader>
 
                                         <CardContent className="flex flex-col flex-1 pt-4">
-                                            {/* Quick highlights */}
                                             <div className="flex flex-wrap gap-2 mb-5">
                                                 <span className="inline-flex items-center gap-1 rounded-full bg-surface px-2.5 py-1 text-xs font-medium text-primary">
                                                     <Globe className="h-3 w-3" /> {pkg.websitePages} Pages
@@ -185,7 +195,6 @@ export default function PackagesPage() {
                                                 </span>
                                             </div>
 
-                                            {/* Feature list */}
                                             <ul className="space-y-2 flex-1 mb-6">
                                                 {pkg.features.map((f) => (
                                                     <li key={f} className="flex items-start gap-2 text-sm text-text-dark">
@@ -195,7 +204,6 @@ export default function PackagesPage() {
                                                 ))}
                                             </ul>
 
-                                            {/* CTA */}
                                             <Button
                                                 href={`/contact?package=${pkg.tier}`}
                                                 className={`w-full rounded-full ${pkg.recommended
@@ -214,14 +222,16 @@ export default function PackagesPage() {
                 )}
 
                 {/* ── Social Media Plans Grid ─────────────────────────── */}
+                {/* Changed: animate → whileInView */}
                 {activeTab === "social" && (
                     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                         {socialPlans.map((plan, idx) => (
                             <motion.div
                                 key={plan.name}
                                 initial={{ opacity: 0, y: 24 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.5, delay: idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={viewportConfig}
+                                transition={staggerTransition(idx)}
                             >
                                 <Card className={`relative flex flex-col h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${plan.isFree ? "border-accent/40 bg-accent/5" : ""}`}>
                                     {plan.isFree && (
@@ -243,7 +253,6 @@ export default function PackagesPage() {
                                     </CardHeader>
 
                                     <CardContent className="flex flex-col flex-1 gap-4">
-                                        {/* Stats */}
                                         <div className="grid grid-cols-3 gap-2 rounded-xl bg-surface p-3 text-center">
                                             <div>
                                                 <p className="text-xl font-bold text-primary font-display">{plan.days}</p>
@@ -259,7 +268,6 @@ export default function PackagesPage() {
                                             </div>
                                         </div>
 
-                                        {/* Features */}
                                         <ul className="space-y-1.5 flex-1">
                                             {[
                                                 "Custom-designed posts",
@@ -275,7 +283,6 @@ export default function PackagesPage() {
                                             ))}
                                         </ul>
 
-                                        {/* Free bonus callout */}
                                         <div className="rounded-lg border border-accent/20 bg-accent/5 px-3 py-2 text-xs font-semibold text-accent">
                                             🎁 {plan.freeBonus}
                                         </div>
@@ -299,6 +306,7 @@ export default function PackagesPage() {
             </section>
 
             {/* ── What's included ──────────────────────────────────── */}
+            {/* Already used whileInView — no change needed here */}
             <section className="bg-surface py-16 lg:py-20">
                 <div className="container-padding">
                     <SectionHeader
@@ -320,8 +328,8 @@ export default function PackagesPage() {
                                 key={item.title}
                                 initial={{ opacity: 0, y: 24 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: "-80px" }}
-                                transition={{ duration: 0.5, delay: idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                                viewport={viewportConfig}
+                                transition={staggerTransition(idx)}
                             >
                                 <Card className="h-full border-none shadow-sm bg-white hover:shadow-md transition-shadow">
                                     <CardContent className="pt-6 flex gap-4">
@@ -385,7 +393,6 @@ export default function PackagesPage() {
             {/* ── CTA ──────────────────────────────────────────────── */}
             <section className="container-padding pb-4">
                 <div className="relative overflow-hidden rounded-3xl bg-primary px-6 py-16 text-center shadow-2xl md:px-12 md:py-20">
-                    {/* background blobs */}
                     <div className="pointer-events-none absolute inset-0 opacity-10">
                         <div className="absolute -top-24 -left-24 h-96 w-96 rounded-full bg-accent blur-3xl" />
                         <div className="absolute top-1/2 left-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white blur-3xl" />
