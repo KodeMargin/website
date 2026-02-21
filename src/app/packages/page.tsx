@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { motion, type Variants } from "framer-motion"
+import { motion } from "framer-motion"
 import { CheckCircle2, X, ArrowRight, Zap, Star, MessageSquare, Globe, Calendar } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -37,15 +37,6 @@ const tierStyles: Record<string, { badge: string; ring: string; glow: string; bg
     },
 }
 
-// ─── Animation variants ──────────────────────────────────────────────────────
-const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    show: { opacity: 1, transition: { staggerChildren: 0.08 } },
-}
-const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 24 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
-}
 
 // ─── Comparison table helpers ────────────────────────────────────────────────
 function CellContent({ value }: { value: string | boolean }) {
@@ -124,16 +115,17 @@ export default function PackagesPage() {
 
                 {/* ── Main Packages Grid ──────────────────────────────── */}
                 {activeTab === "main" && (
-                    <motion.div
-                        variants={containerVariants}
-                        initial="hidden"
-                        animate="show"
-                        className="grid gap-6 md:grid-cols-2 xl:grid-cols-4"
-                    >
-                        {mainPackages.map((pkg) => {
+                    <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+                        {mainPackages.map((pkg, idx) => {
                             const styles = tierStyles[pkg.tier]
                             return (
-                                <motion.div key={pkg.tier} variants={itemVariants} className="flex">
+                                <motion.div
+                                    key={pkg.tier}
+                                    className="flex"
+                                    initial={{ opacity: 0, y: 24 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.5, delay: idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                                >
                                     <Card
                                         className={`relative flex flex-col w-full overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${styles.glow} ${pkg.recommended
                                             ? `ring-2 ${styles.ring} shadow-lg ${styles.glow}`
@@ -218,19 +210,19 @@ export default function PackagesPage() {
                                 </motion.div>
                             )
                         })}
-                    </motion.div>
+                    </div>
                 )}
 
                 {/* ── Social Media Plans Grid ─────────────────────────── */}
                 {activeTab === "social" && (
-                    <motion.div
-                        variants={containerVariants}
-                        initial="hidden"
-                        animate="show"
-                        className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
-                    >
-                        {socialPlans.map((plan) => (
-                            <motion.div key={plan.name} variants={itemVariants}>
+                    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                        {socialPlans.map((plan, idx) => (
+                            <motion.div
+                                key={plan.name}
+                                initial={{ opacity: 0, y: 24 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5, delay: idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                            >
                                 <Card className={`relative flex flex-col h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${plan.isFree ? "border-accent/40 bg-accent/5" : ""}`}>
                                     {plan.isFree && (
                                         <div className="absolute -top-3 left-6">
@@ -302,7 +294,7 @@ export default function PackagesPage() {
                                 </Card>
                             </motion.div>
                         ))}
-                    </motion.div>
+                    </div>
                 )}
             </section>
 
@@ -315,13 +307,7 @@ export default function PackagesPage() {
                         align="center"
                         className="mb-12"
                     />
-                    <motion.div
-                        variants={containerVariants}
-                        initial="hidden"
-                        whileInView="show"
-                        viewport={{ once: true, margin: "-80px" }}
-                        className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
-                    >
+                    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                         {[
                             { icon: Globe, title: "100% Custom Design", desc: "Unique to your brand — never a template your competitors could use." },
                             { icon: Zap, title: "Mobile-Responsive & Fast", desc: "Optimised for every screen, blazing fast on all devices." },
@@ -329,8 +315,14 @@ export default function PackagesPage() {
                             { icon: MessageSquare, title: "Contact Form & Maps", desc: "Customers can find and reach you instantly." },
                             { icon: Star, title: "Social Media Integration", desc: "Your feeds and social links woven into the site." },
                             { icon: Calendar, title: "1 Round of Revisions", desc: "We perfect until you are 100% happy." },
-                        ].map((item) => (
-                            <motion.div key={item.title} variants={itemVariants}>
+                        ].map((item, idx) => (
+                            <motion.div
+                                key={item.title}
+                                initial={{ opacity: 0, y: 24 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: "-80px" }}
+                                transition={{ duration: 0.5, delay: idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                            >
                                 <Card className="h-full border-none shadow-sm bg-white hover:shadow-md transition-shadow">
                                     <CardContent className="pt-6 flex gap-4">
                                         <div className="shrink-0 h-10 w-10 rounded-lg bg-primary/5 flex items-center justify-center text-primary">
@@ -344,7 +336,7 @@ export default function PackagesPage() {
                                 </Card>
                             </motion.div>
                         ))}
-                    </motion.div>
+                    </div>
                 </div>
             </section>
 
@@ -409,7 +401,7 @@ export default function PackagesPage() {
                             Ready to launch your digital presence?
                         </h2>
                         <p className="text-white/75 text-lg">
-                            Not sure which package is right for you? Let's have a quick call and we'll recommend the best fit.
+                            Not sure which package is right for you? Let&apos;s have a quick call and we&apos;ll recommend the best fit.
                         </p>
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                             <Button
