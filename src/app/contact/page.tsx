@@ -285,7 +285,8 @@ function ContactForm() {
 export default function ContactPage() {
     return (
         <div className="flex flex-col gap-24 pb-20 pt-8 md:pt-12 lg:pt-16">
-            {/* Hero */}
+
+            {/* ── Hero ─────────────────────────────────────────────── */}
             <section className="container-padding flex flex-col items-start gap-8">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -304,24 +305,49 @@ export default function ContactPage() {
                 </motion.div>
             </section>
 
-            {/* Form + Info */}
+            {/* ── Form + Info ───────────────────────────────────────── */}
+            {/* Everything here is above the fold → use animate, not whileInView */}
             <section className="container-padding">
                 <div className="grid gap-12 lg:grid-cols-2 lg:gap-24">
-                    <Card className="border-none shadow-xl bg-white p-2">
-                        <CardContent className="p-6 md:p-8">
-                            <Suspense fallback={<div className="h-96 animate-pulse rounded-lg bg-surface" />}>
-                                <ContactForm />
-                            </Suspense>
-                        </CardContent>
-                    </Card>
+
+                    {/* Contact Form */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 24 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                        <Card className="border-none shadow-xl bg-white p-2">
+                            <CardContent className="p-6 md:p-8">
+                                <Suspense fallback={<div className="h-96 animate-pulse rounded-lg bg-surface" />}>
+                                    <ContactForm />
+                                </Suspense>
+                            </CardContent>
+                        </Card>
+                    </motion.div>
 
                     {/* Contact Info */}
                     <div className="flex flex-col gap-10">
+
+                        {/* Contact Details */}
                         <div>
-                            <h3 className="text-2xl font-bold font-display text-primary mb-6">Contact Details</h3>
+                            <motion.h3
+                                className="text-2xl font-bold font-display text-primary mb-6"
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                            >
+                                Contact Details
+                            </motion.h3>
                             <div className="space-y-6">
                                 {contactInfo.map((item, index) => (
-                                    <a key={index} href={item.href} className="flex items-start gap-4 group">
+                                    <motion.a
+                                        key={index}
+                                        href={item.href}
+                                        className="flex items-start gap-4 group"
+                                        initial={{ opacity: 0, y: 24 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.5, delay: 0.3 + index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                                    >
                                         <div className="h-12 w-12 rounded-lg bg-surface flex items-center justify-center text-primary group-hover:bg-red-500 group-hover:text-white transition-colors">
                                             <item.icon className="h-5 w-5" />
                                         </div>
@@ -329,25 +355,38 @@ export default function ContactPage() {
                                             <p className="font-medium text-text-muted text-sm">{item.label}</p>
                                             <p className="text-lg font-semibold text-primary">{item.value}</p>
                                         </div>
-                                    </a>
+                                    </motion.a>
                                 ))}
                             </div>
                         </div>
+
+                        {/* Social Links */}
                         <div>
-                            <h3 className="text-2xl font-bold font-display text-primary mb-6">Connect with Us</h3>
+                            <motion.h3
+                                className="text-2xl font-bold font-display text-primary mb-6"
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                            >
+                                Connect with Us
+                            </motion.h3>
                             <div className="flex gap-4">
                                 {socialLinks.map((link, index) => (
-                                    <a
+                                    <motion.a
                                         key={index}
                                         href={link.href}
                                         className="h-12 w-12 rounded-full border border-border flex items-center justify-center text-text-muted hover:bg-primary hover:text-white hover:border-primary transition-all"
                                         aria-label={link.name}
+                                        initial={{ opacity: 0, y: 24 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.5, delay: 0.6 + index * 0.08, ease: [0.22, 1, 0.36, 1] }}
                                     >
                                         <link.icon className="h-5 w-5" />
-                                    </a>
+                                    </motion.a>
                                 ))}
                             </div>
                         </div>
+
                     </div>
                 </div>
             </section>
