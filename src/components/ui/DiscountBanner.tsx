@@ -51,7 +51,7 @@ export function DiscountBanner() {
                             </span>
                             <span className="hidden sm:inline text-white/70">—</span>
                             <span>
-                                <span className="font-bold text-yellow-200">10% OFF</span>{" "}
+                                <span className="font-bold text-yellow-200">Up to 20% OFF</span>{" "}
                                 for the first {DISCOUNT_SPOTS_LEFT} clients.{" "}
                                 <span className="text-white/80">Limited spots available.</span>
                             </span>

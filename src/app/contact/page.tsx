@@ -12,27 +12,27 @@ import { Loader2, CheckCircle, AlertCircle, ChevronDown } from "lucide-react"
 // ─── Package options shown in the dropdown ──────────────────────────────────
 const PACKAGE_OPTIONS = [
     { value: "", label: "No specific package (general inquiry)" },
-    { value: "🏆 Platinum Package — $699", label: "🏆 Platinum Package — $699" },
-    { value: "🥇 Gold Package — $599", label: "🥇 Gold Package — $599" },
-    { value: "🥈 Silver Package — $499", label: "🥈 Silver Package — $499" },
-    { value: "🥉 Bronze Package — $400", label: "🥉 Bronze Package — $400" },
-    { value: "📅 30-Day Social Media Plan — $399", label: "📅 30-Day Social Media Plan — $399" },
-    { value: "📅 15-Day Social Media Plan — $199", label: "📅 15-Day Social Media Plan — $199" },
-    { value: "📅 10-Day Social Media Plan — $159", label: "📅 10-Day Social Media Plan — $159" },
-    { value: "📅 7-Day Social Media Plan — $99", label: "📅 7-Day Social Media Plan — $99" },
+    { value: "🏆 Platinum Package — $699", label: "🏆 Platinum Package - $699" },
+    { value: "🥇 Gold Package — $599", label: "🥇 Gold Package - $599" },
+    { value: "🥈 Silver Package — $499", label: "🥈 Silver Package - $499" },
+    { value: "🥉 Bronze Package — $400", label: "🥉 Bronze Package - $400" },
+    { value: "📅 30-Day Social Media Plan — $399", label: "📅 30-Day Social Media Plan - $399" },
+    { value: "📅 15-Day Social Media Plan — $199", label: "📅 15-Day Social Media Plan - $199" },
+    { value: "📅 10-Day Social Media Plan — $159", label: "📅 10-Day Social Media Plan - $159" },
+    { value: "📅 7-Day Social Media Plan — $99", label: "📅 7-Day Social Media Plan - $99" },
     { value: "💬 Custom / Other", label: "💬 Custom / Other (describe below)" },
 ]
 
 // Map ?package=<value> query params → full option values
 const PARAM_MAP: Record<string, string> = {
-    platinum: "🏆 Platinum Package — $699",
-    gold: "🥇 Gold Package — $599",
-    silver: "🥈 Silver Package — $499",
-    bronze: "🥉 Bronze Package — $400",
-    "30-day": "📅 30-Day Social Media Plan — $399",
-    "15-day": "📅 15-Day Social Media Plan — $199",
-    "10-day": "📅 10-Day Social Media Plan — $159",
-    "7-day": "📅 7-Day Social Media Plan — $99",
+    platinum: "🏆 Platinum Package - $699",
+    gold: "🥇 Gold Package - $599",
+    silver: "🥈 Silver Package - $499",
+    bronze: "🥉 Bronze Package - $400",
+    "30-day": "📅 30-Day Social Media Plan - $399",
+    "15-day": "📅 15-Day Social Media Plan - $199",
+    "10-day": "📅 10-Day Social Media Plan - $159",
+    "7-day": "📅 7-Day Social Media Plan - $99",
 }
 
 const INPUT_CLASS =
@@ -45,6 +45,7 @@ interface FormData {
     packageInterest: string
     subject: string
     message: string
+    attachment: File | null
 }
 
 type FormStatus = "idle" | "loading" | "success" | "error"
@@ -60,6 +61,7 @@ function ContactForm() {
         packageInterest: "",
         subject: "",
         message: "",
+        attachment: null,
     })
     const [status, setStatus] = useState<FormStatus>("idle")
     const [errorMessage, setErrorMessage] = useState("")
@@ -70,6 +72,7 @@ function ContactForm() {
         if (!param) return
         const matched = PARAM_MAP[param] ?? ""
         if (matched) setFormData((prev) => ({ ...prev, packageInterest: matched }))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [searchParams])
 
     const handleChange = (
@@ -79,24 +82,42 @@ function ContactForm() {
         setFormData((prev) => ({ ...prev, [id]: value }))
     }
 
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files.length > 0) {
+            setFormData((prev) => ({ ...prev, attachment: e.target.files![0] }))
+        } else {
+            setFormData((prev) => ({ ...prev, attachment: null }))
+        }
+    }
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         setStatus("loading")
         setErrorMessage("")
 
         try {
+            const formDataToSend = new FormData()
+            formDataToSend.append("name", formData.name)
+            formDataToSend.append("email", formData.email)
+            formDataToSend.append("phone", formData.phone)
+            formDataToSend.append("packageInterest", formData.packageInterest)
+            formDataToSend.append("subject", formData.subject)
+            formDataToSend.append("message", formData.message)
+            if (formData.attachment) {
+                formDataToSend.append("attachment", formData.attachment)
+            }
+
             const response = await fetch("/api/contact", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData),
+                body: formDataToSend,
             })
 
             const data = await response.json()
 
             if (response.ok) {
                 setStatus("success")
-                setFormData({ name: "", email: "", phone: "", packageInterest: "", subject: "", message: "" })
-                setTimeout(() => setStatus("idle"), 5000)
+                setFormData({ name: "", email: "", phone: "", packageInterest: "", subject: "", message: "", attachment: null })
+                setTimeout(() => window.location.reload(), 2000)
             } else {
                 setStatus("error")
                 setErrorMessage(data.error || "Something went wrong. Please try again.")
@@ -149,7 +170,7 @@ function ContactForm() {
                     onChange={handleChange}
                     required
                     className={INPUT_CLASS}
-                    placeholder="+1 (555) 000-0000"
+                    placeholder="+94 71 188 8358"
                 />
             </div>
 
@@ -185,7 +206,7 @@ function ContactForm() {
                         animate={{ opacity: 1, y: 0 }}
                         className="text-xs text-primary/70 font-medium"
                     >
-                        ✓ We'll prepare a tailored proposal for this package.
+                        ✓ We&apos;ll prepare a tailored proposal for this package.
                     </motion.p>
                 )}
             </div>
@@ -214,6 +235,19 @@ function ContactForm() {
                     rows={5}
                     className={`${INPUT_CLASS} min-h-[120px] resize-none h-auto`}
                     placeholder="Tell us about your business, goals, or any additional requirements..."
+                />
+            </div>
+
+            {/* Attachment */}
+            <div className="space-y-2">
+                <label htmlFor="attachment" className="text-sm font-medium leading-none flex items-center gap-2">
+                    Attachment (Optional)
+                </label>
+                <input
+                    id="attachment"
+                    type="file"
+                    onChange={handleFileChange}
+                    className={`${INPUT_CLASS} file:mr-4 file:py-1 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20`}
                 />
             </div>
 
@@ -261,11 +295,11 @@ export default function ContactPage() {
                 >
                     <Badge variant="surface" className="px-4 py-1.5 text-sm">Contact Us</Badge>
                     <h1 className="text-5xl font-bold tracking-tight text-primary sm:text-6xl md:text-7xl lg:text-8xl font-display">
-                        Let's build something <br />
+                        Let&apos;s build something <br />
                         <span className="text-transparent bg-clip-text bg-red-500">amazing.</span>
                     </h1>
                     <p className="max-w-2xl text-xl text-text-muted leading-relaxed">
-                        Have a project in mind or just want to say hi? We'd love to hear from you.
+                        Have a project in mind or just want to say hi? We&apos;d love to hear from you.
                     </p>
                 </motion.div>
             </section>

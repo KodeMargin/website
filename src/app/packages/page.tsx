@@ -71,7 +71,7 @@ export default function PackagesPage() {
                     {DISCOUNT_ACTIVE && (
                         <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-accent/10 px-4 py-1.5 text-sm font-semibold text-accent border border-accent/20">
                             <Zap className="h-3.5 w-3.5 fill-current" />
-                            Startup Launch - Offers are available for first {DISCOUNT_SPOTS_LEFT} clients only
+                            Startup Launch - Up to 20% OFF are available for first {DISCOUNT_SPOTS_LEFT} clients only
                         </div>
                     )}
                     <h1 className="text-5xl font-bold tracking-tight text-primary font-display leading-[1.05] sm:text-6xl md:text-7xl">

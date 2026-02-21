@@ -3,7 +3,14 @@ import nodemailer from "nodemailer"
 
 export async function POST(request: NextRequest) {
     try {
-        const { name, email, phone, packageInterest, subject, message } = await request.json()
+        const reqData = await request.formData()
+        const name = reqData.get("name") as string | null
+        const email = reqData.get("email") as string | null
+        const phone = reqData.get("phone") as string | null
+        const packageInterest = reqData.get("packageInterest") as string | null
+        const subject = reqData.get("subject") as string | null
+        const message = reqData.get("message") as string | null
+        const attachment = reqData.get("attachment") as File | null
 
         // Validate required fields
         if (!name || !email || !phone || !subject || !message) {
@@ -23,7 +30,7 @@ export async function POST(request: NextRequest) {
         })
 
         // Email to you (site owner)
-        const mailOptions = {
+        const mailOptions: any = {
             from: `"${name} via KodeMargin" <${process.env.EMAIL_USER}>`,
             replyTo: email,
             to: "kodemargin@gmail.com",
@@ -49,6 +56,19 @@ export async function POST(request: NextRequest) {
                     </p>
                 </div>
             `,
+        }
+
+        if (attachment) {
+            const bytes = await attachment.arrayBuffer()
+            const buffer = Buffer.from(bytes)
+
+            mailOptions.attachments = [
+                {
+                    filename: attachment.name,
+                    content: buffer,
+                    contentType: attachment.type
+                }
+            ]
         }
 
         await transporter.sendMail(mailOptions)

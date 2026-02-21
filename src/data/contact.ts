@@ -16,10 +16,10 @@ export const contactInfo = [
         href: "tel:+94711888358"
     },
     {
-        label: "Office",
+        label: "Location",
         value: "Kurunegala, Sri Lanka",
         icon: MapPin,
-        href: "https://maps.google.com" // Placeholder
+        href: "https://maps.app.goo.gl/CeeGkwqL5HaPcFRo9" // Placeholder
     }
 ]
 
