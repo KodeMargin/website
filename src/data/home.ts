@@ -16,6 +16,6 @@ export const processSteps = [
 ]
 
 export const testimonials = [
-    { quote: "KodeMargin transformed our online presence. Their attention to detail and technical expertise is unmatched.", author: "Sarah Jenkins", role: "CEO, TechFlow" },
-    { quote: "The team delivered our mobile app ahead of schedule and it looks fantastic. Highly recommended.", author: "Michael Chen", role: "Product Manager, StartUp Inc" },
+    // { quote: "KodeMargin transformed our online presence. Their attention to detail and technical expertise is unmatched.", author: "Tumesh Attanayake", role: "Founder & Owner, Buddy Restaurants" },
+    // { quote: "The team delivered our mobile app ahead of schedule and it looks fantastic. Highly recommended.", author: "Bhashith Ranaweera", role: "Owner, Aarya Creations" },
 ]
