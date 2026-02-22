@@ -67,14 +67,19 @@ export default function PackagesPage() {
                     transition={{ duration: 0.6 }}
                     className="max-w-3xl"
                 >
-                    {DISCOUNT_ACTIVE && (
-                        <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-accent/10 px-4 py-1.5 text-sm font-semibold text-accent border border-accent/20">
-                            <Zap className="h-3.5 w-3.5 fill-current" />
-                            Startup Launch - Up to 20% OFF are available for first {DISCOUNT_SPOTS_LEFT} clients only
-                        </div>
-                    )}
-                    <h1 className="text-5xl font-bold tracking-tight text-primary font-display leading-[1.05] sm:text-6xl md:text-7xl">
-                        Transparent&nbsp;
+                    <div className="flex flex-col items-start gap-4 mb-6">
+                        <Badge variant="surface" className="px-4 py-1.5 text-sm">
+                            Our Packages
+                        </Badge>
+                        {DISCOUNT_ACTIVE && (
+                            <div className="inline-flex items-start sm:items-center gap-2 rounded-2xl md:rounded-full bg-accent/10 px-4 py-2 sm:py-1.5 text-sm font-semibold text-accent border border-accent/20">
+                                <Zap className="h-4 w-4 sm:h-3.5 sm:w-3.5 fill-current shrink-0 mt-0.5 sm:mt-0" />
+                                <span>Startup Launch - Up to 20% OFF are available for first {DISCOUNT_SPOTS_LEFT} clients only</span>
+                            </div>
+                        )}
+                    </div>
+                    <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-primary font-display leading-[1.05] md:text-7xl">
+                        Transparent{" "}
                         <span className="text-transparent bg-clip-text bg-red-500">
                             pricing.
                         </span>
@@ -107,7 +112,7 @@ export default function PackagesPage() {
             {/* ── Tab Switch ───────────────────────────────────────── */}
             <section className="container-padding">
                 <motion.div
-                    className="flex items-center gap-1 rounded-full border border-border bg-white p-1 w-fit shadow-sm mb-10"
+                    className="flex flex-wrap sm:flex-nowrap max-w-full items-center gap-1 rounded-2xl sm:rounded-full border border-border bg-white p-1 w-fit shadow-sm mb-10 mx-auto sm:mx-0"
                     initial={{ opacity: 0, y: 24 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
@@ -116,7 +121,7 @@ export default function PackagesPage() {
                         <button
                             key={tab}
                             onClick={() => setActiveTab(tab)}
-                            className={`relative rounded-full px-5 py-2 text-sm font-semibold transition-all duration-200 ${activeTab === tab
+                            className={`relative rounded-full px-4 sm:px-5 py-2 text-xs sm:text-sm font-semibold transition-all duration-200 flex-1 sm:flex-none text-center ${activeTab === tab
                                 ? "bg-primary text-white shadow"
                                 : "text-text-muted hover:text-primary"
                                 }`}
@@ -154,8 +159,8 @@ export default function PackagesPage() {
                                             </div>
                                         )}
 
-                                        <CardHeader className={`pt-${pkg.recommended ? "8" : "6"} bg-gradient-to-b ${styles.bg}`}>
-                                            <div className="flex items-center justify-between mb-3">
+                                        <CardHeader className={`pt-${pkg.recommended ? "8" : "6"} bg-linear-to-b ${styles.bg}`}> 
+                                            <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
                                                 <span className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold ${styles.badge}`}>
                                                     <span>{pkg.emoji}</span> {pkg.name}
                                                 </span>
@@ -240,7 +245,7 @@ export default function PackagesPage() {
                                         </div>
                                     )}
                                     <CardHeader>
-                                        <div className="flex items-center justify-between">
+                                        <div className="flex flex-wrap items-center justify-between gap-2">
                                             <CardTitle className="text-lg font-display text-primary">{plan.name}</CardTitle>
                                             <div className="text-right">
                                                 {plan.isFree ? (
@@ -357,7 +362,7 @@ export default function PackagesPage() {
                     className="mb-10"
                 />
                 <div className="overflow-x-auto rounded-2xl border border-border shadow-sm">
-                    <table className="w-full min-w-[640px] text-sm">
+                    <table className="w-full min-w-160 text-sm">
                         <thead>
                             <tr className="bg-primary text-white">
                                 <th className="py-4 px-5 text-left font-semibold text-white/70 w-40">Feature</th>
@@ -400,7 +405,7 @@ export default function PackagesPage() {
 
                     <div className="relative z-10 max-w-2xl mx-auto space-y-6">
                         {DISCOUNT_ACTIVE && (
-                            <Badge className="bg-accent/20 text-accent border border-accent/30 text-sm px-4 py-1.5">
+                            <Badge className="bg-accent/20 text-accent border border-accent/30 text-xs sm:text-sm px-4 py-1.5 shrink-0 whitespace-normal text-center leading-tight">
                                 🚀 Startup Launch - {DISCOUNT_SPOTS_LEFT} Spots Left
                             </Badge>
                         )}

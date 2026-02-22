@@ -370,7 +370,7 @@ export default function ContactPage() {
                             >
                                 Connect with Us
                             </motion.h3>
-                            <div className="flex gap-4">
+                            <div className="flex gap-4 mb-10">
                                 {socialLinks.map((link, index) => (
                                     <motion.a
                                         key={index}

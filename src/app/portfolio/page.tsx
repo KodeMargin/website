@@ -116,7 +116,7 @@ export default function PortfolioPage() {
 
             {/* CTA Section */}
             <section className="container-padding">
-                <div className="relative overflow-hidden rounded-3xl bg-primary px-6 py-16 text-center shadow-2xl md:px-12 md:py-24">
+                <div className="relative overflow-hidden rounded-3xl bg-primary px-6 py-16 text-center shadow-2xl md:px-12 md:py-24 mb-10">
                     <div className="relative z-10 max-w-2xl mx-auto space-y-8">
                         <h2 className="text-3xl font-bold font-display text-white md:text-5xl">
                             Ready to start your project?

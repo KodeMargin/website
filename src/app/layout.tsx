@@ -4,6 +4,7 @@ import "./globals.css";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { MobileNav } from "@/components/layout/MobileNav";
 import { PageShell } from "@/components/layout/PageShell";
+import { SplashScreen } from "@/components/layout/SplashScreen";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -33,6 +34,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} antialiased bg-surface text-text-dark font-sans overflow-hidden`}
       >
+        <SplashScreen />
         <div className="flex h-screen w-full overflow-hidden">
           {/* Sidebar (Desktop) */}
           <Sidebar />
