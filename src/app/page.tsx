@@ -232,7 +232,7 @@ export default function Home() {
                 viewport={viewportConfig}
                 transition={staggerTransition(i)}
               >
-                <Card className="border-none shadow-lg bg-white">
+                {/* <Card className="border-none shadow-lg bg-white">
                   <CardContent className="pt-8">
                     <div className="flex gap-1 mb-4">
                       {[1, 2, 3, 4, 5].map((star) => (
@@ -245,7 +245,7 @@ export default function Home() {
                       <div className="text-sm text-text-muted">{review.role}</div>
                     </div>
                   </CardContent>
-                </Card>
+                </Card> */}
               </motion.div>
             ))}
           </div>
