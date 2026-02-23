@@ -40,7 +40,7 @@ export default function RootLayout({
           <Sidebar />
 
           {/* Main Content Area */}
-          <main className="flex-1 overflow-y-auto relative h-full w-full hide-scrollbar pb-20 lg:pb-0">
+          <main className="flex-1 overflow-y-auto relative h-full w-full hide-scrollbar pb-28 lg:pb-0">
             <PageShell>
               {children}
             </PageShell>
