@@ -123,7 +123,7 @@ export default function AboutPage() {
             <section className="container-padding">
                 <SectionHeader title="Meet the Team" subtitle="The talented individuals behind KodeMargin." className="mb-12" />
 
-                <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 mb-10">
+                <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
                     {team.map((member, index) => (
                         <motion.div
                             key={index}

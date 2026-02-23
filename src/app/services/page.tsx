@@ -108,7 +108,7 @@ export default function ServicesPage() {
 
             {/* CTA Section */}
             <section className="container-padding">
-                <div className="relative overflow-hidden rounded-3xl bg-primary px-6 py-16 text-center shadow-2xl md:px-12 md:py-24 mb-10">
+                <div className="relative overflow-hidden rounded-3xl bg-primary px-6 py-16 text-center shadow-2xl md:px-12 md:py-24">
                     <div className="absolute inset-0 opacity-10">
                         <div className="absolute -top-24 -left-24 h-96 w-96 rounded-full bg-accent blur-3xl"></div>
                         <div className="absolute top-1/2 left-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white blur-3xl"></div>

@@ -159,7 +159,7 @@ export default function PackagesPage() {
                                             </div>
                                         )}
 
-                                        <CardHeader className={`pt-${pkg.recommended ? "8" : "6"} bg-linear-to-b ${styles.bg}`}> 
+                                        <CardHeader className={`pt-${pkg.recommended ? "8" : "6"} bg-linear-to-b ${styles.bg}`}>
                                             <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
                                                 <span className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold ${styles.badge}`}>
                                                     <span>{pkg.emoji}</span> {pkg.name}
@@ -396,7 +396,7 @@ export default function PackagesPage() {
             </section>
 
             {/* ── CTA ──────────────────────────────────────────────── */}
-            <section className="container-padding pb-4">
+            <section className="container-padding">
                 <div className="relative overflow-hidden rounded-3xl bg-primary px-6 py-16 text-center shadow-2xl md:px-12 md:py-20">
                     <div className="pointer-events-none absolute inset-0 opacity-10">
                         <div className="absolute -top-24 -left-24 h-96 w-96 rounded-full bg-accent blur-3xl" />

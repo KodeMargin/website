@@ -338,7 +338,7 @@ export default function ContactPage() {
                             >
                                 Contact Details
                             </motion.h3>
-                            <div className="space-y-6">
+                            <div className="space-y-6 ml-10">
                                 {contactInfo.map((item, index) => (
                                     <motion.a
                                         key={index}
@@ -370,7 +370,7 @@ export default function ContactPage() {
                             >
                                 Connect with Us
                             </motion.h3>
-                            <div className="flex gap-4 mb-10">
+                            <div className="flex gap-4 ml-10">
                                 {socialLinks.map((link, index) => (
                                     <motion.a
                                         key={index}
