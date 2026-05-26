@@ -3,7 +3,7 @@
 // true  = banner visible on every page
 // false = banner completely hidden (no layout impact)
 // ─────────────────────────────────────────────────────────────────────────────
-export const DISCOUNT_ACTIVE = true
+export const DISCOUNT_ACTIVE = false
 
 // How many spots remain (shown on banner + packages page hero)
 export const DISCOUNT_SPOTS_LEFT = 10
@@ -223,6 +223,4 @@ export const compareRows: CompareRow[] = [
     { feature: "Caption Copywriting", platinum: true, gold: true, silver: true, bronze: true },
     // { feature: "Performance Report", platinum: true, gold: true, silver: true, bronze: true },
     // { feature: "1 Round of Revisions", platinum: true, gold: true, silver: true, bronze: true },
-    { feature: "Original Price", platinum: "$799", gold: "$599", silver: "$499", bronze: "$429" },
-    { feature: "Offer Price", platinum: "$529", gold: "$429", silver: "$379", bronze: "$349" },
 ]

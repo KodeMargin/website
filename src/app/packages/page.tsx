@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { CheckCircle2, X, ArrowRight, Zap, Star, MessageSquare, Globe, Calendar } from "lucide-react"
+import { CheckCircle2, X, ArrowRight, Zap, Star, MessageSquare, Globe, Calendar, Code2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -169,22 +169,6 @@ export default function PackagesPage() {
                                             <CardTitle className="text-xl font-display text-primary leading-tight">
                                                 {pkg.tagline}
                                             </CardTitle>
-
-                                            <div className="mt-4 flex items-end gap-2">
-                                                <span className="text-4xl font-bold text-primary font-display">
-                                                    ${pkg.discountPrice}
-                                                </span>
-                                                {DISCOUNT_ACTIVE && (
-                                                    <span className="mb-1 text-lg font-medium text-text-muted line-through">
-                                                        ${pkg.originalPrice}
-                                                    </span>
-                                                )}
-                                            </div>
-                                            {DISCOUNT_ACTIVE && (
-                                                <p className="mt-1 text-xs font-semibold text-accent">
-                                                    Save ${pkg.originalPrice - pkg.discountPrice} - Startup Launch Offer
-                                                </p>
-                                            )}
                                         </CardHeader>
 
                                         <CardContent className="flex flex-col flex-1 pt-4">
@@ -216,7 +200,7 @@ export default function PackagesPage() {
                                                     : "bg-surface text-primary border border-border hover:bg-primary hover:text-white"
                                                     } transition-all`}
                                             >
-                                                Get Started
+                                                Get the {pkg.name} Plan
                                             </Button>
                                         </CardContent>
                                     </Card>
@@ -247,13 +231,9 @@ export default function PackagesPage() {
                                     <CardHeader>
                                         <div className="flex flex-wrap items-center justify-between gap-2">
                                             <CardTitle className="text-lg font-display text-primary">{plan.name}</CardTitle>
-                                            <div className="text-right">
-                                                {plan.isFree ? (
-                                                    <span className="text-2xl font-bold text-accent font-display">FREE</span>
-                                                ) : (
-                                                    <span className="text-2xl font-bold text-primary font-display">${plan.price}</span>
-                                                )}
-                                            </div>
+                                            {plan.isFree && (
+                                                <span className="text-2xl font-bold text-accent font-display">FREE</span>
+                                            )}
                                         </div>
                                     </CardHeader>
 
@@ -307,6 +287,61 @@ export default function PackagesPage() {
                             </motion.div>
                         ))}
                     </div>
+                )}
+
+                {/* ── Custom Development Card (main tab only) ─────────── */}
+                {activeTab === "main" && (
+                    <motion.div
+                        className="mt-8"
+                        initial={{ opacity: 0, y: 24 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                        <Card className="relative overflow-hidden border-2 border-primary/20 bg-gradient-to-br from-primary/5 via-white to-accent/5 shadow-lg hover:shadow-xl transition-all duration-300">
+                            <div className="pointer-events-none absolute inset-0 opacity-5">
+                                <div className="absolute -top-16 -right-16 h-64 w-64 rounded-full bg-primary blur-3xl" />
+                                <div className="absolute -bottom-16 -left-16 h-64 w-64 rounded-full bg-accent blur-3xl" />
+                            </div>
+                            <CardContent className="relative z-10 flex flex-col md:flex-row items-start md:items-center gap-8 py-10 px-8">
+                                <div className="shrink-0 h-16 w-16 rounded-2xl bg-primary flex items-center justify-center shadow-lg shadow-primary/20">
+                                    <Code2 className="h-8 w-8 text-white" />
+                                </div>
+                                <div className="flex-1 space-y-3">
+                                    <div className="flex flex-wrap items-center gap-3">
+                                        <h2 className="text-2xl font-bold font-display text-primary">Custom Web Application & System Development</h2>
+                                        <Badge variant="surface" className="text-xs px-3 py-1">Bespoke</Badge>
+                                    </div>
+                                    <p className="text-text-muted leading-relaxed max-w-2xl">
+                                        Need something beyond a standard website? We build fully custom web applications, internal business systems, dashboards, booking platforms, e-commerce solutions, and more — engineered from scratch to fit your exact workflow and requirements.
+                                    </p>
+                                    <ul className="flex flex-wrap gap-x-6 gap-y-2 pt-1">
+                                        {[
+                                            "Web Applications",
+                                            "Business Management Systems",
+                                            "E-Commerce Platforms",
+                                            "Booking & Reservation Systems",
+                                            "Custom Dashboards & Portals",
+                                            "API Integrations",
+                                        ].map((item) => (
+                                            <li key={item} className="flex items-center gap-1.5 text-sm text-text-dark">
+                                                <CheckCircle2 className="h-3.5 w-3.5 text-accent shrink-0" />
+                                                {item}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                                <div className="shrink-0 w-full md:w-auto">
+                                    <Button
+                                        href="/contact?package=Custom%20Development"
+                                        size="lg"
+                                        className="w-full md:w-auto rounded-full bg-primary text-white hover:bg-primary/90 h-12 px-8 shadow-lg shadow-primary/20 transition-all hover:scale-105 active:scale-95"
+                                    >
+                                        Discuss Your Project <ArrowRight className="ml-2 h-4 w-4" />
+                                    </Button>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    </motion.div>
                 )}
             </section>
 
