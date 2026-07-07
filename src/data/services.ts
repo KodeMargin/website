@@ -40,7 +40,7 @@ import { FaMicrosoft } from "react-icons/fa"
 
 export const services = [
     {
-        title: "Web Development",
+        title: "Web Application Development",
         description: "We build high-performance, SEO-friendly, and responsive websites. From simple landing pages to complex web applications.",
         icon: Globe,
         features: ["Custom Web Applications", "E-commerce Platforms", "CMS Development", "PWA (Progressive Web Apps)"]
