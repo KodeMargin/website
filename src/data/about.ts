@@ -31,11 +31,7 @@ export const values = [
 ]
 
 export const team = [
-    {
-        name: "Pathum Dissanayake",
-        role: "Founder & CEO",
-        image: "/Pathum.jpg"
-    },
+    
     {
         name: "User 1",
         role: "Role",
@@ -48,6 +44,11 @@ export const team = [
     },
     {
         name: "User 3",
+        role: "Role",
+        image: "bg-slate-300" // Placeholder
+    },
+    {
+        name: "User 4",
         role: "Role",
         image: "bg-slate-300" // Placeholder
     }
