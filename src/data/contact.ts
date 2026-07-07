@@ -17,7 +17,7 @@ export const contactInfo = [
     },
     {
         label: "Location",
-        value: "Kurunegala, Sri Lanka",
+        value: "Sri Lanka",
         icon: MapPin,
         href: "https://maps.app.goo.gl/CeeGkwqL5HaPcFRo9" // Placeholder
     }
