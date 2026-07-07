@@ -31,7 +31,6 @@ export const values = [
 ]
 
 export const team = [
-    
     {
         name: "User 1",
         role: "Role",
