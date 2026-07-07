@@ -122,10 +122,11 @@ export default function Home() {
                   We build blazing fast, SEO-optimized websites using Next.js and React. Our code is clean, maintainable, and scalable.
                 </p>
                 <ul className="space-y-2 text-sm text-text-dark font-medium">
-                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-accent" /> Custom Web Apps</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-accent" /> Custom Websites</li>
                   <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-accent" /> E-commerce Solutions</li>
                   <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-accent" /> CMS Integration</li>
                   <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-accent" /> API Development</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-accent" /> ERP Systems</li>
                 </ul>
               </CardContent>
             </Card>
