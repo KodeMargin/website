@@ -34,7 +34,7 @@ export const team = [
     {
         name: "User 1",
         role: "Role",
-        image: "bg-slate-300" // Placeholder
+        image: "bg-slate-200" // Placeholder
     },
     {
         name: "User 2",
@@ -44,11 +44,11 @@ export const team = [
     {
         name: "User 3",
         role: "Role",
-        image: "bg-slate-300" // Placeholder
+        image: "bg-slate-200" // Placeholder
     },
     {
         name: "User 4",
         role: "Role",
-        image: "bg-slate-300" // Placeholder
+        image: "bg-slate-200" // Placeholder
     }
 ]
