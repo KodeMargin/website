@@ -115,7 +115,7 @@ export default function Home() {
                 <div className="mb-4 h-12 w-12 rounded-lg bg-primary flex items-center justify-center text-white">
                   <Globe className="h-6 w-6" />
                 </div>
-                <CardTitle>Web Development</CardTitle>
+                <CardTitle>Web Application Development</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-text-muted mb-6">
