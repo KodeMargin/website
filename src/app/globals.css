@@ -4,6 +4,7 @@
   --color-primary: #050846;
   --color-accent: #FF0000;
   --color-background: #FFFFFF;
+  --color-canvas: #FAFAFD;
   --color-surface: #F6F7FB;
   --color-text-dark: #0B1020;
   --color-text-muted: #5B6375;
@@ -17,6 +18,31 @@
     0% { opacity: 0; transform: translateY(20px); }
     100% { opacity: 1; transform: translateY(0); }
   }
+
+  @keyframes fade-in {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  @keyframes shimmer {
+    0% { transform: translateX(-100%) skewX(-12deg); }
+    100% { transform: translateX(300%) skewX(-12deg); }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(4deg); }
+  }
+
+  @keyframes pulse-ring {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(1.5); opacity: 0; }
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
 }
 
 :root {
@@ -24,11 +50,36 @@
   --foreground: #0B1020;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background-color: var(--color-background);
+  background-color: var(--color-canvas);
   color: var(--color-text-dark);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.site-canvas {
+  background:
+    radial-gradient(ellipse 36rem 30rem at 4% 5%, rgba(5, 8, 70, 0.09), transparent 72%),
+    radial-gradient(ellipse 28rem 24rem at 98% 19%, rgba(255, 0, 0, 0.05), transparent 72%),
+    radial-gradient(ellipse 34rem 30rem at 8% 58%, rgba(5, 8, 70, 0.055), transparent 72%),
+    radial-gradient(ellipse 30rem 26rem at 96% 82%, rgba(255, 0, 0, 0.035), transparent 72%),
+    linear-gradient(180deg, #FCFCFE 0%, #F7F8FC 52%, #FBFBFD 100%);
+}
+
+.site-canvas::before {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  left: clamp(1.5rem, 4vw, 5rem);
+  width: 1px;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent, rgba(255, 0, 0, 0.14) 12rem, rgba(255, 0, 0, 0.04) 72%, transparent);
 }
 
 /* Utilities */
@@ -43,5 +94,38 @@ body {
   scrollbar-width: none;
   &::-webkit-scrollbar {
     display: none;
+  }
+}
+
+@utility animate-shimmer {
+  animation: shimmer 2.5s infinite;
+}
+
+@utility animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@utility animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease infinite;
+}
+
+/* Selection colour */
+::selection {
+  background-color: rgba(5, 8, 70, 0.12);
+  color: #050846;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

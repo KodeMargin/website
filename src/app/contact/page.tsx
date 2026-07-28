@@ -1,42 +1,43 @@
 "use client"
 
-import { useState, useEffect, Suspense } from "react"
+import { useState, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { motion } from "framer-motion"
 import { contactInfo, socialLinks } from "@/data/contact"
-import { Loader2, CheckCircle, AlertCircle, ChevronDown } from "lucide-react"
+import { Loader2, CheckCircle, AlertCircle, ChevronDown, Send } from "lucide-react"
+import { motionEase } from "@/lib/motion"
 
 // ─── Package options shown in the dropdown ──────────────────────────────────
 const PACKAGE_OPTIONS = [
     { value: "", label: "No specific package (general inquiry)" },
-    { value: "🏆 Platinum Package — $699", label: "🏆 Platinum Package - $699" },
-    { value: "🥇 Gold Package — $599", label: "🥇 Gold Package - $599" },
-    { value: "🥈 Silver Package — $499", label: "🥈 Silver Package - $499" },
-    { value: "🥉 Bronze Package — $400", label: "🥉 Bronze Package - $400" },
-    { value: "📅 30-Day Social Media Plan — $399", label: "📅 30-Day Social Media Plan - $399" },
-    { value: "📅 15-Day Social Media Plan — $199", label: "📅 15-Day Social Media Plan - $199" },
-    { value: "📅 10-Day Social Media Plan — $159", label: "📅 10-Day Social Media Plan - $159" },
-    { value: "📅 7-Day Social Media Plan — $99", label: "📅 7-Day Social Media Plan - $99" },
+    { value: "🏆 Platinum Package", label: "🏆 Platinum Package" },
+    { value: "🥇 Gold Package", label: "🥇 Gold Package" },
+    { value: "🥈 Silver Package", label: "🥈 Silver Package" },
+    { value: "🥉 Bronze Package", label: "🥉 Bronze Package" },
+    { value: "📅 30-Day Social Media Plan", label: "📅 30-Day Social Media Plan" },
+    { value: "📅 15-Day Social Media Plan", label: "📅 15-Day Social Media Plan" },
+    { value: "📅 10-Day Social Media Plan", label: "📅 10-Day Social Media Plan" },
+    { value: "📅 7-Day Social Media Plan", label: "📅 7-Day Social Media Plan" },
     { value: "💬 Custom / Other", label: "💬 Custom / Other (describe below)" },
 ]
 
 // Map ?package=<value> query params → full option values
 const PARAM_MAP: Record<string, string> = {
-    platinum: "🏆 Platinum Package - $699",
-    gold: "🥇 Gold Package - $599",
-    silver: "🥈 Silver Package - $499",
-    bronze: "🥉 Bronze Package - $400",
-    "30-day": "📅 30-Day Social Media Plan - $399",
-    "15-day": "📅 15-Day Social Media Plan - $199",
-    "10-day": "📅 10-Day Social Media Plan - $159",
-    "7-day": "📅 7-Day Social Media Plan - $99",
+    platinum: "🏆 Platinum Package",
+    gold: "🥇 Gold Package",
+    silver: "🥈 Silver Package",
+    bronze: "🥉 Bronze Package",
+    "30-day": "📅 30-Day Social Media Plan",
+    "15-day": "📅 15-Day Social Media Plan",
+    "10-day": "📅 10-Day Social Media Plan",
+    "7-day": "📅 7-Day Social Media Plan",
 }
 
 const INPUT_CLASS =
-    "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-colors"
+    "flex h-11 w-full rounded-xl border border-border/80 bg-background px-4 py-2 text-sm ring-offset-background placeholder:text-text-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:border-primary disabled:cursor-not-allowed disabled:opacity-50 transition-all shadow-xs"
 
 interface FormData {
     name: string
@@ -54,26 +55,18 @@ type FormStatus = "idle" | "loading" | "success" | "error"
 function ContactForm() {
     const searchParams = useSearchParams()
 
-    const [formData, setFormData] = useState<FormData>({
+    const [formData, setFormData] = useState<FormData>(() => ({
         name: "",
         email: "",
         phone: "",
-        packageInterest: "",
+        packageInterest:
+            PARAM_MAP[searchParams.get("package")?.toLowerCase() ?? ""] ?? "",
         subject: "",
         message: "",
         attachment: null,
-    })
+    }))
     const [status, setStatus] = useState<FormStatus>("idle")
     const [errorMessage, setErrorMessage] = useState("")
-
-    // Pre-fill packageInterest from ?package= query param
-    useEffect(() => {
-        const param = searchParams.get("package")?.toLowerCase() ?? ""
-        if (!param) return
-        const matched = PARAM_MAP[param] ?? ""
-        if (matched) setFormData((prev) => ({ ...prev, packageInterest: matched }))
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [searchParams])
 
     const handleChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -132,9 +125,9 @@ function ContactForm() {
         <form onSubmit={handleSubmit} className="space-y-6">
 
             {/* Name + Email */}
-            <div className="grid gap-4 md:grid-cols-2">
+            <div className="grid gap-5 md:grid-cols-2">
                 <div className="space-y-2">
-                    <label htmlFor="name" className="text-sm font-medium leading-none">Name</label>
+                    <label htmlFor="name" className="text-xs font-bold uppercase tracking-wider text-primary">Name</label>
                     <input
                         id="name"
                         value={formData.name}
@@ -145,7 +138,7 @@ function ContactForm() {
                     />
                 </div>
                 <div className="space-y-2">
-                    <label htmlFor="email" className="text-sm font-medium leading-none">Email</label>
+                    <label htmlFor="email" className="text-xs font-bold uppercase tracking-wider text-primary">Email</label>
                     <input
                         id="email"
                         type="email"
@@ -160,7 +153,7 @@ function ContactForm() {
 
             {/* Phone */}
             <div className="space-y-2">
-                <label htmlFor="phone" className="text-sm font-medium leading-none flex items-center gap-2">
+                <label htmlFor="phone" className="text-xs font-bold uppercase tracking-wider text-primary">
                     Phone
                 </label>
                 <input
@@ -176,9 +169,9 @@ function ContactForm() {
 
             {/* Package Interest */}
             <div className="space-y-2">
-                <label htmlFor="packageInterest" className="text-sm font-medium leading-none flex items-center gap-2">
-                    Package Interest
-                    <span className="text-xs font-normal text-text-muted rounded-full border border-border px-2 py-0.5">
+                <label htmlFor="packageInterest" className="text-xs font-bold uppercase tracking-wider text-primary flex items-center justify-between">
+                    <span>Package Interest</span>
+                    <span className="text-[10px] font-semibold text-text-muted lowercase rounded-full bg-surface border border-border/60 px-2 py-0.5">
                         optional
                     </span>
                 </label>
@@ -187,8 +180,8 @@ function ContactForm() {
                         id="packageInterest"
                         value={formData.packageInterest}
                         onChange={handleChange}
-                        className={`${INPUT_CLASS} appearance-none pr-9 cursor-pointer ${formData.packageInterest
-                            ? "border-primary/40 bg-primary/5 text-primary font-medium"
+                        className={`${INPUT_CLASS} appearance-none pr-10 cursor-pointer ${formData.packageInterest
+                            ? "border-primary bg-primary/5 text-primary font-semibold"
                             : ""
                             }`}
                     >
@@ -198,13 +191,14 @@ function ContactForm() {
                             </option>
                         ))}
                     </select>
-                    <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-text-muted" />
+                    <ChevronDown className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-text-muted" />
                 </div>
                 {formData.packageInterest && (
                     <motion.p
                         initial={{ opacity: 0, y: -4 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-xs text-primary/70 font-medium"
+                        transition={{ duration: 0.2, ease: motionEase }}
+                        className="text-xs text-accent font-semibold flex items-center gap-1 mt-1"
                     >
                         ✓ We&apos;ll prepare a tailored proposal for this package.
                     </motion.p>
@@ -213,7 +207,7 @@ function ContactForm() {
 
             {/* Subject */}
             <div className="space-y-2">
-                <label htmlFor="subject" className="text-sm font-medium leading-none">Subject</label>
+                <label htmlFor="subject" className="text-xs font-bold uppercase tracking-wider text-primary">Subject</label>
                 <input
                     id="subject"
                     value={formData.subject}
@@ -226,41 +220,44 @@ function ContactForm() {
 
             {/* Message */}
             <div className="space-y-2">
-                <label htmlFor="message" className="text-sm font-medium leading-none">Message</label>
+                <label htmlFor="message" className="text-xs font-bold uppercase tracking-wider text-primary">Message</label>
                 <textarea
                     id="message"
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    rows={5}
-                    className={`${INPUT_CLASS} min-h-[120px] resize-none h-auto`}
+                    rows={4}
+                    className={`${INPUT_CLASS} min-h-[130px] resize-none h-auto`}
                     placeholder="Tell us about your business, goals, or any additional requirements..."
                 />
             </div>
 
             {/* Attachment */}
             <div className="space-y-2">
-                <label htmlFor="attachment" className="text-sm font-medium leading-none flex items-center gap-2">
-                    Attachment (Optional)
+                <label htmlFor="attachment" className="text-xs font-bold uppercase tracking-wider text-primary flex items-center justify-between">
+                    <span>Attachment</span>
+                    <span className="text-[10px] font-semibold text-text-muted lowercase rounded-full bg-surface border border-border/60 px-2 py-0.5">
+                        optional
+                    </span>
                 </label>
                 <input
                     id="attachment"
                     type="file"
                     onChange={handleFileChange}
-                    className={`${INPUT_CLASS} file:mr-4 file:py-1 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20`}
+                    className={`${INPUT_CLASS} file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-primary/10 file:text-primary hover:file:bg-primary/20 cursor-pointer`}
                 />
             </div>
 
             {/* Status */}
             {status === "success" && (
-                <div className="flex items-center gap-2 text-green-600 bg-green-50 p-3 rounded-md">
-                    <CheckCircle className="h-5 w-5 shrink-0" />
-                    <span>Message sent! We'll get back to you soon.</span>
+                <div className="flex items-center gap-3 text-emerald-700 bg-emerald-50 border border-emerald-200 p-4 rounded-xl text-sm font-medium">
+                    <CheckCircle className="h-5 w-5 text-emerald-600 shrink-0" />
+                    <span>Message sent! We&apos;ll get back to you soon.</span>
                 </div>
             )}
             {status === "error" && (
-                <div className="flex items-center gap-2 text-red-600 bg-red-50 p-3 rounded-md">
-                    <AlertCircle className="h-5 w-5 shrink-0" />
+                <div className="flex items-center gap-3 text-red-700 bg-red-50 border border-red-200 p-4 rounded-xl text-sm font-medium">
+                    <AlertCircle className="h-5 w-5 text-red-600 shrink-0" />
                     <span>{errorMessage}</span>
                 </div>
             )}
@@ -268,13 +265,13 @@ function ContactForm() {
             <Button
                 type="submit"
                 size="lg"
-                className="w-full bg-primary hover:bg-primary/90 text-white rounded-full"
+                className="w-full bg-primary hover:bg-primary/90 text-white rounded-xl h-13 font-bold text-base shadow-lg shadow-primary/20 transition-colors duration-200"
                 disabled={status === "loading"}
             >
                 {status === "loading" ? (
-                    <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Sending...</>
+                    <><Loader2 className="mr-2 h-5 w-5 animate-spin" /> Sending Message...</>
                 ) : (
-                    "Send Message"
+                    <><Send className="mr-2 h-4 w-4" /> Send Message</>
                 )}
             </Button>
         </form>
@@ -284,20 +281,22 @@ function ContactForm() {
 // ─── Page ───────────────────────────────────────────────────────────────────
 export default function ContactPage() {
     return (
-        <div className="flex flex-col gap-24 pb-20 pt-8 md:pt-12 lg:pt-16">
+        <div className="flex flex-col gap-20 pb-20 pt-8 md:pt-12 lg:pt-16">
 
             {/* ── Hero ─────────────────────────────────────────────── */}
-            <section className="container-padding flex flex-col items-start gap-8">
+            <section className="container-padding max-w-7xl mx-auto flex flex-col items-start gap-8 w-full">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
+                    transition={{ duration: 0.42, ease: motionEase }}
                     className="space-y-6 max-w-4xl"
                 >
                     <Badge variant="surface" className="px-4 py-1.5 text-sm">Contact Us</Badge>
-                    <h1 className="text-5xl font-bold tracking-tight text-primary sm:text-6xl md:text-7xl lg:text-8xl font-display">
+                    <h1 className="text-5xl font-bold tracking-tight text-primary sm:text-6xl md:text-7xl lg:text-8xl font-display leading-[0.92]">
                         Let&apos;s build something <br />
-                        <span className="text-transparent bg-clip-text bg-red-500">amazing.</span>
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-red-700">
+                            amazing.
+                        </span>
                     </h1>
                     <p className="max-w-2xl text-xl text-text-muted leading-relaxed">
                         Have a project in mind or just want to say hi? We&apos;d love to hear from you.
@@ -306,19 +305,18 @@ export default function ContactPage() {
             </section>
 
             {/* ── Form + Info ───────────────────────────────────────── */}
-            {/* Everything here is above the fold → use animate, not whileInView */}
-            <section className="container-padding">
-                <div className="grid gap-12 lg:grid-cols-2 lg:gap-24">
+            <section className="container-padding max-w-7xl mx-auto w-full">
+                <div className="grid gap-12 lg:grid-cols-2 lg:gap-20 items-start">
 
                     {/* Contact Form */}
                     <motion.div
-                        initial={{ opacity: 0, y: 24 }}
+                        initial={{ opacity: 0, y: 16 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                        transition={{ duration: 0.4, delay: 0.05, ease: motionEase }}
                     >
-                        <Card className="border-none shadow-xl bg-white p-2">
+                        <Card className="border border-border/60 shadow-xl bg-white p-2 rounded-3xl">
                             <CardContent className="p-6 md:p-8">
-                                <Suspense fallback={<div className="h-96 animate-pulse rounded-lg bg-surface" />}>
+                                <Suspense fallback={<div className="h-96 animate-pulse rounded-2xl bg-surface" />}>
                                     <ContactForm />
                                 </Suspense>
                             </CardContent>
@@ -326,7 +324,7 @@ export default function ContactPage() {
                     </motion.div>
 
                     {/* Contact Info */}
-                    <div className="flex flex-col gap-10">
+                    <div className="flex flex-col gap-10 lg:pl-4">
 
                         {/* Contact Details */}
                         <div>
@@ -334,26 +332,26 @@ export default function ContactPage() {
                                 className="text-2xl font-bold font-display text-primary mb-6"
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                                transition={{ duration: 0.36, delay: 0.1, ease: motionEase }}
                             >
                                 Contact Details
                             </motion.h3>
-                            <div className="space-y-6 ml-10">
+                            <div className="space-y-4">
                                 {contactInfo.map((item, index) => (
                                     <motion.a
                                         key={index}
                                         href={item.href}
-                                        className="flex items-start gap-4 group"
-                                        initial={{ opacity: 0, y: 24 }}
+                                        className="flex items-center gap-4 p-4 rounded-2xl bg-surface/60 border border-border/50 hover:bg-white hover:border-red-500/20 hover:shadow-md transition-all duration-300 group"
+                                        initial={{ opacity: 0, y: 14 }}
                                         animate={{ opacity: 1, y: 0 }}
-                                        transition={{ duration: 0.5, delay: 0.3 + index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                                        transition={{ duration: 0.36, delay: 0.12 + index * 0.05, ease: motionEase }}
                                     >
-                                        <div className="h-12 w-12 rounded-lg bg-surface flex items-center justify-center text-primary group-hover:bg-red-500 group-hover:text-white transition-colors">
+                                        <div className="h-12 w-12 rounded-xl bg-white border border-border/60 flex items-center justify-center text-primary group-hover:bg-red-500 group-hover:text-white group-hover:border-red-500 transition-all duration-300 shadow-xs">
                                             <item.icon className="h-5 w-5" />
                                         </div>
                                         <div>
-                                            <p className="font-medium text-text-muted text-sm">{item.label}</p>
-                                            <p className="text-lg font-semibold text-primary">{item.value}</p>
+                                            <p className="font-semibold text-text-muted text-xs uppercase tracking-wider">{item.label}</p>
+                                            <p className="text-base font-bold text-primary font-display">{item.value}</p>
                                         </div>
                                     </motion.a>
                                 ))}
@@ -366,22 +364,25 @@ export default function ContactPage() {
                                 className="text-2xl font-bold font-display text-primary mb-6"
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.5, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                                transition={{ duration: 0.36, delay: 0.18, ease: motionEase }}
                             >
                                 Connect with Us
                             </motion.h3>
-                            <div className="flex gap-4 ml-10">
+                            <div className="flex flex-wrap gap-3">
                                 {socialLinks.map((link, index) => (
                                     <motion.a
                                         key={index}
                                         href={link.href}
-                                        className="h-12 w-12 rounded-full border border-border flex items-center justify-center text-text-muted hover:bg-primary hover:text-white hover:border-primary transition-all"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="h-12 px-5 rounded-full border border-border/80 bg-white flex items-center gap-2 text-sm font-bold text-primary hover:bg-red-500 hover:text-white hover:border-red-50 transition-all duration-300 shadow-xs hover:shadow-md"
                                         aria-label={link.name}
-                                        initial={{ opacity: 0, y: 24 }}
+                                        initial={{ opacity: 0, y: 14 }}
                                         animate={{ opacity: 1, y: 0 }}
-                                        transition={{ duration: 0.5, delay: 0.6 + index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                                        transition={{ duration: 0.36, delay: 0.2 + index * 0.05, ease: motionEase }}
                                     >
-                                        <link.icon className="h-5 w-5" />
+                                        <link.icon className="h-4 w-4" />
+                                        <span>{link.name}</span>
                                     </motion.a>
                                 ))}
                             </div>
