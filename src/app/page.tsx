@@ -77,12 +77,12 @@ export default function Home() {
                             transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
                             className="max-w-3xl"
                         >
-                            <div className="mb-7 flex items-center gap-3">
+                            {/* <div className="mb-7 flex items-center gap-3">
                                 <span className="h-px w-9 bg-accent" aria-hidden="true" />
                                 <p className="text-xs font-bold uppercase tracking-[0.16em] text-primary">
                                     KodeMargin · Software development company
                                 </p>
-                            </div>
+                            </div> */}
 
                             <h1 className="font-display text-5xl font-bold leading-[1.04] tracking-[-0.045em] text-primary sm:text-6xl lg:text-[4.5rem]">
                                 Built for Today. {" "}
