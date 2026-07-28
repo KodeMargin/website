@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { PageShell } from "@/components/layout/PageShell";
 import { Footer } from "@/components/layout/Footer";
+import { SplashScreen } from "@/components/layout/SplashScreen";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -33,6 +34,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} antialiased bg-background text-text-dark font-sans`}
       >
+        <SplashScreen />
         <Navbar />
         <main className="pt-20 min-h-screen">
           <PageShell>
