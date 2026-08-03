@@ -7,6 +7,7 @@ import { motionEase } from "@/lib/motion"
 
 export function PageShell({ children }: { children: React.ReactNode }) {
     const pathname = usePathname()
+    const isAdmin = pathname.startsWith("/admin")
 
     return (
         <>
@@ -17,22 +18,26 @@ export function PageShell({ children }: { children: React.ReactNode }) {
                     <span className="site-monogram-m">M</span>
                 </div>
                 <MotionConfig reducedMotion="user">
-                    <AnimatePresence mode="popLayout" initial={false}>
-                        <motion.div
-                            key={pathname}
-                            initial={{ opacity: 0, y: 8 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{
-                                opacity: 0,
-                                y: -3,
-                                transition: { duration: 0.16, ease: "easeIn" },
-                            }}
-                            transition={{ duration: 0.26, ease: motionEase }}
-                            className="relative z-10 min-h-full w-full will-change-transform"
-                        >
-                            {children}
-                        </motion.div>
-                    </AnimatePresence>
+                    {isAdmin ? (
+                        <div className="relative z-10 min-h-full w-full">{children}</div>
+                    ) : (
+                        <AnimatePresence mode="popLayout" initial={false}>
+                            <motion.div
+                                key={pathname}
+                                initial={{ opacity: 0, y: 8 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{
+                                    opacity: 0,
+                                    y: -3,
+                                    transition: { duration: 0.16, ease: "easeIn" },
+                                }}
+                                transition={{ duration: 0.26, ease: motionEase }}
+                                className="relative z-10 min-h-full w-full will-change-transform"
+                            >
+                                {children}
+                            </motion.div>
+                        </AnimatePresence>
+                    )}
                 </MotionConfig>
             </div>
         </>

@@ -20,18 +20,19 @@ export async function POST(request: NextRequest) {
             )
         }
 
-        // Create transporter - Configure with your email provider
+        // Create transporter - Brevo SMTP relay (Brevo → SMTP & API → SMTP tab)
         const transporter = nodemailer.createTransport({
-            service: "gmail",
+            host: "smtp-relay.brevo.com",
+            port: 587,
             auth: {
-                user: process.env.EMAIL_USER,
-                pass: process.env.EMAIL_PASS,
+                user: process.env.BREVO_SMTP_USER,
+                pass: process.env.BREVO_SMTP_KEY,
             },
         })
 
         // Email to you (site owner)
         const mailOptions: any = {
-            from: `"${name} via KodeMargin" <${process.env.EMAIL_USER}>`,
+            from: `"${name} via KodeMargin" <${process.env.EMAIL_FROM}>`,
             replyTo: email,
             to: "kodemargin@gmail.com",
             subject: `New Project Requirement: ${subject}`,
