@@ -1,18 +1,13 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Stack_Sans_Text } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { PageShell } from "@/components/layout/PageShell";
 import { Footer } from "@/components/layout/Footer";
 import { SplashScreen } from "@/components/layout/SplashScreen";
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
-
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+const stackSansText = Stack_Sans_Text({
+  variable: "--font-stack-sans-text",
   subsets: ["latin"],
 });
 
@@ -32,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${spaceGrotesk.variable} antialiased bg-background text-text-dark font-sans`}
+        className={`${stackSansText.variable} ${stackSansText.className} antialiased bg-background text-text-dark`}
       >
         <SplashScreen />
         <Navbar />

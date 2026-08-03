@@ -10,8 +10,8 @@
   --color-text-muted: #5B6375;
   --color-border: #E6E8F0;
 
-  --font-sans: var(--font-inter);
-  --font-display: var(--font-space-grotesk);
+  --font-sans: var(--font-stack-sans-text);
+  --font-display: var(--font-stack-sans-text);
 
   /* Animation Keyframes */
   @keyframes slide-up {
