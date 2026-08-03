@@ -5,9 +5,9 @@ import { BsWhatsapp } from "react-icons/bs"
 export const contactInfo = [
     {
         label: "Email",
-        value: "kodemargin@gmail.com",
+        value: "info@kodemargin.com",
         icon: Mail,
-        href: "mailto:kodemargin@gmail.com"
+        href: "mailto:info@kodemargin.com"
     },
     {
         label: "Phone",

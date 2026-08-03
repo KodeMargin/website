@@ -9,7 +9,7 @@ const navItems = [
     { name: "Home", href: "/", icon: Home },
     { name: "About", href: "/about", icon: User },
     { name: "Services", href: "/services", icon: Layers },
-    { name: "Packages", href: "/packages", icon: Tag },
+    //{ name: "Packages", href: "/packages", icon: Tag },
     { name: "Work", href: "/portfolio", icon: Briefcase },
     { name: "Contact", href: "/contact", icon: Mail },
 ]

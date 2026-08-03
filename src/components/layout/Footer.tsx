@@ -8,7 +8,7 @@ const navLinks = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     { name: "Services", href: "/services" },
-    { name: "Packages", href: "/packages" },
+    //{ name: "Packages", href: "/packages" },
     { name: "Portfolio", href: "/portfolio" },
     { name: "Contact", href: "/contact" },
 ]
@@ -55,7 +55,7 @@ export function Footer() {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label={link.name}
-                                    className="h-9 w-9 rounded-full border border-border flex items-center justify-center text-text-muted hover:bg-primary hover:text-white hover:border-primary transition-all duration-300"
+                                    className="h-9 w-9 rounded-full border border-border flex items-center justify-center text-text-muted hover:bg-accent hover:text-white hover:border-accent transition-all duration-300"
                                 >
                                     <link.icon className="h-4 w-4" />
                                 </a>
@@ -88,25 +88,19 @@ export function Footer() {
                         </h3>
                         <div className="flex flex-col gap-3">
                             <a
-                                href="mailto:kodemargin@gmail.com"
+                                href="mailto:info@kodemargin.com"
                                 className="text-sm text-text-muted hover:text-primary transition-colors font-medium"
                             >
-                                kodemargin@gmail.com
+                                info@kodemargin.com
                             </a>
                             <a
-                                href="tel:+94711888358"
+                                href="https://wa.me/94711888358"
                                 className="text-sm text-text-muted hover:text-primary transition-colors font-medium"
                             >
                                 +94 71 188 8358
                             </a>
                             <span className="text-sm text-text-muted">Sri Lanka</span>
                         </div>
-                        <Link
-                            href="/contact"
-                            className="mt-2 inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-xs font-bold text-white hover:bg-primary/90 transition-all w-fit shadow-sm hover:shadow-md"
-                        >
-                            Start a Project →
-                        </Link>
                     </div>
                 </div>
 

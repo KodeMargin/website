@@ -56,7 +56,7 @@ export default function ServicesPage() {
                                 <div className="absolute inset-0 bg-gradient-to-br from-primary/3 to-accent/3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none" />
 
                                 <CardHeader className="relative">
-                                    <div className="mb-6 h-14 w-14 rounded-2xl bg-surface flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-200 shadow-sm">
+                                    <div className="mb-6 h-14 w-14 rounded-2xl bg-surface flex items-center justify-center text-primary group-hover:bg-accent group-hover:text-white transition-colors duration-200 shadow-sm">
                                         <service.icon className="h-7 w-7" />
                                     </div>
                                     <CardTitle className="text-2xl mb-2">{service.title}</CardTitle>

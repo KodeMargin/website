@@ -6,6 +6,7 @@ import { SectionHeader } from "@/components/ui/section-header"
 import { motion } from "framer-motion"
 import { aboutData, values, team } from "@/data/about"
 import Image from "next/image"
+import Link from "next/link"
 import { motionEase, staggerTransition, viewportConfig } from "@/lib/motion"
 
 // ─── Gradient palette for team initials avatars ──────────────────────────────
@@ -39,7 +40,7 @@ export default function AboutPage() {
                         at heart.
                     </h1>
                     <p className="max-w-2xl text-xl text-text-muted leading-relaxed">
-                        {aboutData.mission}
+                        {aboutData.intro}
                     </p>
                 </motion.div>
             </section>
@@ -89,6 +90,66 @@ export default function AboutPage() {
                 </div>
             </section>
 
+            {/* ── Vision & Mission ────────────────────────────────── */}
+            <section className="container-padding max-w-7xl mx-auto w-full">
+                <SectionHeader
+                    title="Vision & Mission"
+                    accentLabel="Our Direction"
+                    subtitle="What we are building toward—and how we turn that ambition into meaningful results."
+                    className="mb-12"
+                />
+
+                <motion.div
+                    initial={{ opacity: 0, y: 18 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={viewportConfig}
+                    transition={{ duration: 0.42, ease: motionEase }}
+                    className="grid overflow-hidden rounded-3xl border border-border bg-white shadow-xl shadow-primary/5 lg:grid-cols-[0.85fr_1.15fr]"
+                >
+                    <article className="relative overflow-hidden bg-primary p-8 text-white sm:p-10 lg:p-12">
+                        <span
+                            aria-hidden="true"
+                            className="absolute -bottom-14 -right-3 font-display text-[13rem] font-bold leading-none text-white/[0.035]"
+                        >
+                            V
+                        </span>
+                        <div className="relative">
+                            <p className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-red-300">
+                                <span className="h-px w-8 bg-accent" aria-hidden="true" />
+                                Our Vision
+                            </p>
+                            <h2 className="mt-7 font-display text-2xl font-bold leading-tight tracking-[-0.025em] sm:text-3xl">
+                                A trusted global digital innovation partner.
+                            </h2>
+                            <p className="mt-5 text-base leading-7 text-white/65 sm:text-lg sm:leading-8">
+                                {aboutData.vision}
+                            </p>
+                        </div>
+                    </article>
+
+                    <article className="relative overflow-hidden p-8 sm:p-10 lg:p-12">
+                        <span
+                            aria-hidden="true"
+                            className="absolute -bottom-16 -right-5 font-display text-[14rem] font-bold leading-none text-primary/[0.025]"
+                        >
+                            M
+                        </span>
+                        <div className="relative">
+                            <p className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-accent">
+                                <span className="h-px w-8 bg-accent" aria-hidden="true" />
+                                Our Mission
+                            </p>
+                            <h2 className="mt-7 font-display text-2xl font-bold leading-tight tracking-[-0.025em] text-primary sm:text-3xl">
+                                Turning ideas into lasting digital impact.
+                            </h2>
+                            <p className="mt-5 text-base leading-7 text-text-muted sm:text-lg sm:leading-8">
+                                {aboutData.mission}
+                            </p>
+                        </div>
+                    </article>
+                </motion.div>
+            </section>
+
             {/* ── Values Section ────────────────────────────────────── */}
             <section className="relative py-20 lg:py-28 overflow-hidden">
                 <div className="absolute inset-0 bg-surface" />
@@ -118,7 +179,7 @@ export default function AboutPage() {
                             >
                                 <Card className="border-border/50 bg-white hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-full group">
                                     <CardHeader>
-                                        <div className="mb-4 h-12 w-12 rounded-xl bg-primary/5 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                                        <div className="mb-4 h-12 w-12 rounded-xl bg-primary/5 flex items-center justify-center text-primary group-hover:bg-accent group-hover:text-white transition-all duration-300">
                                             <value.icon className="h-5 w-5" />
                                         </div>
                                         <CardTitle className="text-lg">{value.title}</CardTitle>
@@ -218,12 +279,12 @@ export default function AboutPage() {
                                 Have a project in mind? We&apos;d love to hear about it.
                             </p>
                             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
-                                <a
+                                <Link
                                     href="/contact"
                                     className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-white text-primary hover:bg-white/90 h-14 px-10 text-base font-bold shadow-[0_8px_30px_rgba(255,255,255,0.15)] transition-colors duration-200"
                                 >
                                     Start a Project →
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>

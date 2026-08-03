@@ -77,12 +77,6 @@ export default function Home() {
                             transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
                             className="max-w-3xl"
                         >
-                            {/* <div className="mb-7 flex items-center gap-3">
-                                <span className="h-px w-9 bg-accent" aria-hidden="true" />
-                                <p className="text-xs font-bold uppercase tracking-[0.16em] text-primary">
-                                    KodeMargin · Software development company
-                                </p>
-                            </div> */}
 
                             <h1 className="font-display text-5xl font-bold leading-[1.04] tracking-[-0.045em] text-primary sm:text-6xl lg:text-[4.5rem]">
                                 Built for Today. {" "}
@@ -125,7 +119,7 @@ export default function Home() {
                         >
                             <div
                                 aria-hidden="true"
-                                className="absolute -right-12 -top-20 font-display text-[14rem] font-bold leading-none tracking-[-0.08em] text-white/[0.035]"
+                                className="absolute -right-12 -top-20 font-display text-[14rem] font-bold leading-none tracking-[-0.08em] text-white/[0.065]"
                             >
                                 KM
                             </div>
@@ -147,11 +141,11 @@ export default function Home() {
                                         />
                                     </div>
                                     <div>
-                                        <p className="font-display text-xl font-bold">
-                                            Kode<span className="text-red-400">Margin</span>
+                                        <p className="font-display text-3xl font-bold">
+                                            Kode<span className="text-accent">Margin</span>
                                         </p>
-                                        <p className="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-white/45">
-                                            Software development company
+                                        <p className=" text-xs font-semibold uppercase tracking-[0.14em] text-white/45">
+                                            We Build What Growth Demands.
                                         </p>
                                     </div>
                                 </div>
@@ -177,7 +171,7 @@ export default function Home() {
                                             key={item}
                                             className="border-b border-white/15 py-4"
                                         >
-                                            <span className="font-mono text-[10px] text-red-300">
+                                            <span className="font-mono text-[10px] text-accent">
                                                 0{index + 1}
                                             </span>
                                             <p className="mt-1 text-sm font-semibold text-white/85">
@@ -272,12 +266,9 @@ export default function Home() {
                                     >
                                         <div className="flex items-center justify-between">
                                             <Icon
-                                                className="h-6 w-6 text-primary"
+                                                className="h-6 w-6 text-accent"
                                                 aria-hidden="true"
                                             />
-                                            <span className="font-mono text-xs font-semibold text-accent">
-                                                0{index + 1}
-                                            </span>
                                         </div>
                                         <h3 className="mt-8 font-display text-xl font-bold text-primary">
                                             {service.title}
@@ -317,7 +308,7 @@ export default function Home() {
                                         key={strength.title}
                                         className="grid grid-cols-[auto_1fr] gap-5 border-b border-border py-7"
                                     >
-                                        <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-primary text-white">
+                                        <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-accent text-white">
                                             <Icon
                                                 className="h-5 w-5"
                                                 aria-hidden="true"
@@ -341,7 +332,7 @@ export default function Home() {
                 <section className="bg-primary text-white">
                     <div className="container-padding mx-auto max-w-7xl py-20 lg:py-24">
                         <div className="max-w-2xl">
-                            <p className="text-xs font-bold uppercase tracking-[0.18em] text-red-300">
+                            <p className="text-xs font-bold uppercase tracking-[0.18em] text-accent">
                                 How we work
                             </p>
                             <h2 className="mt-4 font-display text-4xl font-bold tracking-[-0.035em] sm:text-5xl">
@@ -372,12 +363,9 @@ export default function Home() {
                                     >
                                         <div className="flex items-center justify-between">
                                             <Icon
-                                                className="h-5 w-5 text-red-300"
+                                                className="h-5 w-5 text-accent"
                                                 aria-hidden="true"
                                             />
-                                            <span className="font-mono text-xs text-white/35">
-                                                0{index + 1}
-                                            </span>
                                         </div>
                                         <h3 className="mt-8 font-display text-lg font-bold">
                                             {step.title}

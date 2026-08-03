@@ -82,6 +82,40 @@ body {
   background: linear-gradient(to bottom, transparent, rgba(255, 0, 0, 0.14) 12rem, rgba(255, 0, 0, 0.04) 72%, transparent);
 }
 
+.site-monogram {
+  position: absolute;
+  inset: 0 0 auto;
+  height: clamp(44rem, 92vh, 68rem);
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);
+}
+
+.site-monogram span {
+  position: absolute;
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 0.75;
+  letter-spacing: -0.12em;
+  color: rgba(91, 99, 117, 0.04);
+}
+
+.site-monogram-k {
+  top: -0.04em;
+  left: -0.1em;
+  font-size: clamp(24rem, 52vw, 50rem);
+  transform: rotate(-6deg);
+}
+
+.site-monogram-m {
+  top: 0.22em;
+  right: -0.16em;
+  font-size: clamp(23rem, 49vw, 47rem);
+  transform: rotate(6deg);
+}
+
 /* Utilities */
 @utility container-padding {
   padding-inline: 1.5rem;

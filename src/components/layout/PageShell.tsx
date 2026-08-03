@@ -12,6 +12,10 @@ export function PageShell({ children }: { children: React.ReactNode }) {
         <>
             <DiscountBanner />
             <div className="site-canvas relative isolate min-h-screen overflow-hidden">
+                <div className="site-monogram" aria-hidden="true">
+                    <span className="site-monogram-k">K</span>
+                    <span className="site-monogram-m">M</span>
+                </div>
                 <MotionConfig reducedMotion="user">
                     <AnimatePresence mode="popLayout" initial={false}>
                         <motion.div
