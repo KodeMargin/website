@@ -445,7 +445,7 @@ export default function PackagesPage() {
                         <h2 className="text-4xl font-bold font-display text-white md:text-5xl leading-tight">
                             Ready to launch your digital presence?
                         </h2>
-                        <p className="text-white/75 text-lg leading-relaxed">
+                        <p className="text-white/75 text-base sm:text-lg leading-relaxed">
                             Not sure which package is right for you? Let&apos;s have a quick call and we&apos;ll recommend the best fit.
                         </p>
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">

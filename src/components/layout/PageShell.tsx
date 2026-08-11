@@ -12,7 +12,7 @@ export function PageShell({ children }: { children: React.ReactNode }) {
     return (
         <>
             <DiscountBanner />
-            <div className="site-canvas relative isolate min-h-screen overflow-hidden">
+            <div className="site-canvas relative isolate min-h-screen overflow-x-clip sm:pt-16 pt-24">
                 <div className="site-monogram" aria-hidden="true">
                     <span className="site-monogram-k">K</span>
                     <span className="site-monogram-m">M</span>

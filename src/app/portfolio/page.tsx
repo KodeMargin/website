@@ -40,7 +40,7 @@ export default function PortfolioPage() {
         <div className="bg-transparent">
 
             {/* ── Hero ─────────────────────────────────────────────── */}
-            <section className="relative overflow-hidden border-b border-border bg-white/75">
+            <section className="relative overflow-hidden border-b border-border">
                 <div className="container-padding relative mx-auto max-w-7xl py-14 sm:py-16 lg:py-20">
                     <motion.div
                         initial={{ opacity: 0, y: 18 }}
@@ -57,7 +57,7 @@ export default function PortfolioPage() {
                             <span className="text-accent">solve real problems.</span>
                         </h1>
 
-                        <p className="mt-7 max-w-2xl text-lg leading-8 text-text-muted">
+                        <p className="mt-7 max-w-2xl text-base leading-7 sm:text-lg sm:leading-8 text-text-muted">
                             KodeMargin is at the beginning of its journey as a company, but our
                             foundation is built on hands-on product development and software
                             engineering experience.
@@ -120,7 +120,7 @@ export default function PortfolioPage() {
 
             {/* ── Founder's Selected Work ──────────────────────────── */}
             <section
-                className="border-y border-border bg-surface"
+                className="border-y border-border bg-surface/60"
             >
                 <div className="container-padding mx-auto max-w-7xl py-20 lg:py-24">
                     <SectionHeader
@@ -179,7 +179,7 @@ export default function PortfolioPage() {
 
             {/* ── How We Build ─────────────────────────────────────── */}
             <section
-                className="border-y border-border bg-surface"
+                className="border-y border-border bg-surface/60"
             >
                 <div className="container-padding mx-auto max-w-7xl py-20 lg:py-24">
                     <SectionHeader

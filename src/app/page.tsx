@@ -65,12 +65,22 @@ export default function Home() {
     return (
         <MotionConfig reducedMotion="user">
             <div className="bg-transparent">
-                <section className="relative overflow-hidden border-b border-border bg-white/75">
+                <section className="relative -mt-20 overflow-hidden border-b border-border bg-white/75 pt-20">
+                    <video
+                        aria-hidden="true"
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        preload="auto"
+                        src="/km.mp4"
+                        className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-15 motion-reduce:hidden"
+                    />
                     <div
                         aria-hidden="true"
                         className="absolute -left-52 top-20 h-96 w-96 rounded-full bg-surface blur-3xl"
                     />
-                    <div className="container-padding relative mx-auto grid max-w-7xl items-center gap-14 py-14 sm:py-18 lg:grid-cols-[1.08fr_0.92fr] lg:gap-20 lg:py-20">
+                    <div className="container-padding relative mx-auto grid max-w-7xl items-center gap-14 pb-14 pt-4 sm:pb-18 sm:pt-6 lg:grid-cols-[1.08fr_0.92fr] lg:gap-20 lg:pb-20 lg:pt-8">
                         <motion.div
                             initial={{ opacity: 0, y: 18 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -83,7 +93,7 @@ export default function Home() {
                                 <span className="text-accent">Ready for Tomorrow.</span>
                             </h1>
 
-                            <p className="mt-7 max-w-2xl text-lg leading-8 text-text-muted">
+                            <p className="mt-7 max-w-2xl text-base leading-7 sm:text-lg sm:leading-8 text-text-muted">
                                 KodeMargin partners with startups and growing businesses to
                                 plan, design, build, and scale dependable web, mobile, and SaaS
                                 products.
@@ -188,45 +198,45 @@ export default function Home() {
                             </div>
                         </motion.aside>
                     </div>
-                </section>
 
-                <section
-                    aria-label="How KodeMargin supports different business needs"
-                    className="border-b border-border bg-surface"
-                >
-                    <div className="container-padding mx-auto grid max-w-7xl sm:grid-cols-2 lg:grid-cols-4">
-                        {clientNeeds.map((need, index) => {
-                            const Icon = need.icon
+                    <section
+                        aria-label="How KodeMargin supports different business needs"
+                        className="relative bg-surface/40"
+                    >
+                        <div className="container-padding mx-auto grid max-w-7xl sm:grid-cols-2 lg:grid-cols-4">
+                            {clientNeeds.map((need, index) => {
+                                const Icon = need.icon
 
-                            return (
-                                <div
-                                    key={need.title}
-                                    className={`flex items-start gap-3 py-6 sm:px-6 ${
-                                        index % 2 === 1
-                                            ? "sm:border-l sm:border-border"
-                                            : ""
-                                    } ${
-                                        index > 0
-                                            ? "lg:border-l lg:border-border"
-                                            : "lg:border-l-0"
-                                    }`}
-                                >
-                                    <Icon
-                                        className="h-5 w-5 shrink-0 text-accent"
-                                        aria-hidden="true"
-                                    />
-                                    <div>
-                                        <p className="font-display text-sm font-bold text-primary">
-                                            {need.title}
-                                        </p>
-                                        <p className="mt-1 text-xs leading-5 text-text-muted">
-                                            {need.description}
-                                        </p>
+                                return (
+                                    <div
+                                        key={need.title}
+                                        className={`flex items-start gap-3 py-6 sm:px-6 ${
+                                            index % 2 === 1
+                                                ? "sm:border-l sm:border-border"
+                                                : ""
+                                        } ${
+                                            index > 0
+                                                ? "lg:border-l lg:border-border"
+                                                : "lg:border-l-0"
+                                        }`}
+                                    >
+                                        <Icon
+                                            className="h-5 w-5 shrink-0 text-accent"
+                                            aria-hidden="true"
+                                        />
+                                        <div>
+                                            <p className="font-display text-sm font-bold text-primary">
+                                                {need.title}
+                                            </p>
+                                            <p className="mt-1 text-xs leading-5 text-text-muted">
+                                                {need.description}
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
-                            )
-                        })}
-                    </div>
+                                )
+                            })}
+                        </div>
+                    </section>
                 </section>
 
                 <section className="container-padding mx-auto max-w-7xl py-20 lg:py-28">

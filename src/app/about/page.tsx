@@ -39,7 +39,7 @@ export default function AboutPage() {
                         </span>{" "}
                         at heart.
                     </h1>
-                    <p className="max-w-2xl text-xl text-text-muted leading-relaxed">
+                    <p className="max-w-2xl text-base sm:text-xl text-text-muted leading-relaxed">
                         {aboutData.intro}
                     </p>
                 </motion.div>
@@ -59,11 +59,11 @@ export default function AboutPage() {
                             accentLabel="Who We Are"
                             className="mb-6"
                         />
-                        <p className="text-lg text-text-muted leading-relaxed mb-6">
+                        <p className="text-base sm:text-lg text-text-muted leading-relaxed mb-6">
                             {aboutData.story}
                         </p>
-                        <p className="text-lg text-text-muted leading-relaxed">
-                            Today, we are proud to work with visionary founders and established enterprises to build the future of the web.
+                        <p className="text-base sm:text-lg text-text-muted leading-relaxed">
+                            We are at the start of our journey as a company, and we treat that as an advantage: every engagement gets senior attention, direct communication, and the focus of a team that is building its reputation one project at a time.
                         </p>
                     </motion.div>
 
@@ -275,7 +275,7 @@ export default function AboutPage() {
                             <h2 className="text-3xl font-bold font-display text-white md:text-5xl">
                                 Let&apos;s build something great together.
                             </h2>
-                            <p className="text-white/65 text-lg leading-relaxed">
+                            <p className="text-white/65 text-base sm:text-lg leading-relaxed">
                                 Have a project in mind? We&apos;d love to hear about it.
                             </p>
                             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">

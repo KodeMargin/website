@@ -34,7 +34,7 @@ export default function ServicesPage() {
                             real results.
                         </span>
                     </h1>
-                    <p className="max-w-2xl text-xl text-text-muted leading-relaxed">
+                    <p className="max-w-2xl text-base sm:text-xl text-text-muted leading-relaxed">
                         We combine technical excellence with creative innovation to deliver digital products that stand out.
                     </p>
                 </motion.div>

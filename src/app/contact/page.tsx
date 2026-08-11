@@ -298,7 +298,7 @@ export default function ContactPage() {
                             amazing.
                         </span>
                     </h1>
-                    <p className="max-w-2xl text-xl text-text-muted leading-relaxed">
+                    <p className="max-w-2xl text-base sm:text-xl text-text-muted leading-relaxed">
                         Have a project in mind or just want to say hi? We&apos;d love to hear from you.
                     </p>
                 </motion.div>
