@@ -65,7 +65,7 @@ export default function Home() {
     return (
         <MotionConfig reducedMotion="user">
             <div className="bg-transparent">
-                <section className="relative -mt-20 overflow-hidden border-b border-border bg-white/75 pt-20">
+                <section className="relative -mt-20 overflow-hidden border-b border-border bg-white/75 pt-28">
                     <video
                         aria-hidden="true"
                         autoPlay

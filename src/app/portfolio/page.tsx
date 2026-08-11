@@ -52,7 +52,7 @@ export default function PortfolioPage() {
                             Our work
                         </p>
 
-                        <h1 className="mt-4 font-display text-4xl font-bold leading-[1.06] tracking-[-0.04em] text-primary sm:text-5xl lg:text-6xl">
+                        <h1 className="mt-4 font-display text-4xl font-bold leading-[1.06] tracking-[-0.04em] text-primary sm:text-6xl lg:text-8xl">
                             Products, platforms, and ideas built to{" "}
                             <span className="text-accent">solve real problems.</span>
                         </h1>

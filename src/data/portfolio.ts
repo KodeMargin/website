@@ -105,6 +105,58 @@ export const internalProducts: Project[] = [
         disclosure: "An internal education product designed and developed by the founder.",
         featured: true,
     },
+    {
+        id: "pathumld",
+
+        title: "Portfolio Website",
+
+        category: "Personal Brand & Portfolio",
+
+        status: "Live · Continuously evolving",
+
+        ownership: "founder-project",
+
+        description:
+            "A modern personal brand and portfolio platform created for software engineer, designer, and educator Pathum Dissanayake. The website brings professional experience, technical expertise, projects, educational work, and creative capabilities together within a polished digital presence.",
+
+        problem:
+            "Professional work, technical projects, teaching initiatives, and creative experience can easily become scattered across different platforms. Pathum LD brings them together into one focused digital identity that makes experience, capabilities, and selected work easier to discover and understand.",
+
+        capabilities: [
+            "Personal brand strategy",
+            "UI/UX design",
+            "Responsive web development",
+            "Project and portfolio showcase",
+            "Professional profile presentation",
+            "Content-focused user experience",
+            "Performance and SEO optimization",
+            "Cloud deployment",
+        ],
+
+        technologies: [
+            "Next.js",
+            "TypeScript",
+            "Tailwind CSS",
+            "Supabase",
+            "Vercel",
+        ],
+
+        image: "/work/pathumld.png",
+
+        imageAlt:
+            "The Pathum LD portfolio homepage featuring Pathum Dissanayake as a Full-Stack Software Engineer with selected projects and professional experience",
+
+        visualVariant: "slate",
+
+        projectUrl: "https://www.pathumld.com/",
+
+        ctaLabel: "Explore Pathum LD",
+
+        disclosure:
+            "A personal brand and portfolio experience designed and developed for KodeMargin founder Pathum Dissanayake.",
+
+        featured: true,
+        },
 ]
 
 export const founderProjects: Project[] = [
